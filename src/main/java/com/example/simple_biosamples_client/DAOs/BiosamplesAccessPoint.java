@@ -6,13 +6,14 @@ import org.springframework.hateoas.Resource;
 import org.springframework.stereotype.Component;
 import uk.ac.ebi.biosamples.client.BioSamplesClient;
 import uk.ac.ebi.biosamples.model.Sample;
+import uk.ac.ebi.biosamples.model.filter.Filter;
+import uk.ac.ebi.biosamples.service.FilterBuilder;
 
-import java.util.NoSuchElementException;
-import java.util.Optional;
+import java.util.*;
 
 @Component
 @Scope("prototype")
-public class BiosamplesAccessPoint implements AccessPoint {
+public class BiosamplesAccessPoint {
     private BioSamplesClient client;
 
     @Autowired
@@ -25,5 +26,18 @@ public class BiosamplesAccessPoint implements AccessPoint {
         Resource<Sample> sampleResource = optionalResource.get();
         return sampleResource.getContent();
     }
+
+
+    public Iterable<Resource<Sample>> getFilteredSamplesByString(String text, List<String> rawFilters) {
+        Collection<Filter> filters = new LinkedList<>();
+        if (rawFilters != null) {
+            for (String filter : rawFilters) {
+                filters.add(FilterBuilder.create().buildFromString(filter));
+            }
+        }
+
+        return client.fetchSampleResourceAll(text, filters);
+    }
+
 }
 
