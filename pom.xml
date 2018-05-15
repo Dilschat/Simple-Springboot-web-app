@@ -62,7 +62,18 @@
 			<artifactId>surefire-api</artifactId>
 			<version>2.17</version>
 		</dependency>
+        <dependency>
+            <groupId>uk.ac.ebi.biosamples</groupId>
+            <artifactId>biosamples-spring-boot-starter</artifactId>
+            <version>4.0.4</version>
+        </dependency>
 	</dependencies>
+    <repositories>
+        <repository>
+            <id>spotnexus</id>
+            <url>https://www.ebi.ac.uk/spot/nexus/repository/maven-releases/</url>
+        </repository>
+    </repositories>
 
 	<build>
 		<plugins>
