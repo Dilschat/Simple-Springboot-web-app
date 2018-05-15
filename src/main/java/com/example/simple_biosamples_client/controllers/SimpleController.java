@@ -1,8 +1,7 @@
 package com.example.simple_biosamples_client.controllers;
 
-import com.example.simple_biosamples_client.DAOs.BiosamplesAccessPoint;
+import com.example.simple_biosamples_client.DAOs.AccessPoint;
 import com.example.simple_biosamples_client.models.Biosample;
-import org.json.JSONException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -17,7 +16,7 @@ import java.io.IOException;
 public class SimpleController {
 
     @Autowired
-    protected BiosamplesAccessPoint accessPoint;
+    protected AccessPoint accessPoint;
 
 
     @RequestMapping("/helloworld")
@@ -26,8 +25,8 @@ public class SimpleController {
     }
 
     @RequestMapping(value="/getSample/{sampleID}", method=RequestMethod.GET)
-    String getSample(@PathVariable String sampleID) throws IOException, JSONException {
-        Biosample biosample=accessPoint.getSample(sampleID);
+    String getSample(@PathVariable String sampleID) throws IOException {
+        Biosample biosample = (Biosample) accessPoint.getSample(sampleID);
         return biosample.toString();
     }
 

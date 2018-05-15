@@ -13,7 +13,7 @@ import java.nio.charset.Charset;
 
 @Component
 @Scope("prototype")
-public class BiosamplesAccessPoint {
+public class BiosamplesAccessPoint implements AccessPoint {
     @Value("${api_url}")
     private String url;
     private Biosample biosample;
@@ -23,24 +23,27 @@ public class BiosamplesAccessPoint {
         this.biosample = sample;
     }
 
-    public Biosample getSample(String sampleID) throws IOException, JSONException {
-        JSONObject sampleJSON = readJsonFromUrl(url + sampleID+".json");
-        biosample.setAccession(sampleJSON.getString("accession"));
-        biosample.setDomain(sampleJSON.getString("domain"));
-        biosample.setName(sampleJSON.getString("name"));
+    public Biosample getSample(String sampleID) throws IOException {
+        try {
+            JSONObject sampleJSON = readJsonFromUrl(url + sampleID + ".json");
+            biosample.setAccession(sampleJSON.getString("accession"));
+            biosample.setDomain(sampleJSON.getString("domain"));
+            biosample.setName(sampleJSON.getString("name"));
+        } catch (JSONException jsonException) {
+            System.out.println(jsonException.toString());
+        }
+
         return biosample;
     }
 
     private static JSONObject readJsonFromUrl(String url) throws IOException, JSONException {
-        InputStream is = new URL(url).openStream();
-        try {
+        String jsonText;
+        try (InputStream is = new URL(url).openStream()) {
             BufferedReader rd = new BufferedReader(new InputStreamReader(is, Charset.forName("UTF-8")));
-            String jsonText = readAll(rd);
-            JSONObject json = new JSONObject(jsonText);
-            return json;
-        } finally {
-            is.close();
+            jsonText = readAll(rd);
+            return new JSONObject(jsonText);
         }
+
     }
 
 
