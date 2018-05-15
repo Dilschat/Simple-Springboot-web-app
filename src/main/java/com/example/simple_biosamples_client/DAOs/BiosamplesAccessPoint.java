@@ -3,7 +3,7 @@ import com.example.simple_biosamples_client.models.Biosample;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
@@ -12,17 +12,19 @@ import java.net.URL;
 import java.nio.charset.Charset;
 
 @Component
-@EnableAutoConfiguration
 @Scope("prototype")
 public class BiosamplesAccessPoint {
-    private final  String url = "https://www.ebi.ac.uk/biosamples/samples/";
+    @Value("${api_url}")
+    private String url;
+    private Biosample biosample;
 
-//    @Autowired
- //   private Biosample biosample;
+    @Autowired
+    BiosamplesAccessPoint(Biosample sample) {
+        this.biosample = sample;
+    }
 
     public Biosample getSample(String sampleID) throws IOException, JSONException {
         JSONObject sampleJSON = readJsonFromUrl(url + sampleID+".json");
-        Biosample biosample = new Biosample();
         biosample.setAccession(sampleJSON.getString("accession"));
         biosample.setDomain(sampleJSON.getString("domain"));
         biosample.setName(sampleJSON.getString("name"));
