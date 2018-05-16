@@ -12,7 +12,6 @@ import uk.ac.ebi.biosamples.model.Sample;
 import uk.ac.ebi.biosamples.model.filter.Filter;
 import uk.ac.ebi.biosamples.service.FilterBuilder;
 
-import java.text.SimpleDateFormat;
 import java.util.*;
 
 @Component
@@ -49,9 +48,10 @@ public class BiosamplesAccessPoint {
     public Iterable<Resource<Sample>> getFilteredSamplesBySearchForm(SearchingForm form) {
         Filter releaseDateFilter = FilterBuilder.create()
                 .onReleaseDate()
-                .from(formatDate(form.getReleaseDateFrom()))
-                .until(formatDate(form.getReleaseDateUntil()))
+                .from(form.getReleaseDateFrom().toString())
+                .until(form.getReleaseDateUntil().toString())
                 .build();
+
         Collection<Collection<Filter>> filters = filterCreator.getFilters();
         ArrayList<Resource<Sample>> results = new ArrayList<>();
 
@@ -60,12 +60,9 @@ public class BiosamplesAccessPoint {
             Iterable<Resource<Sample>> result = client.fetchSampleResourceAll(form.getText(), filter);
             results.addAll(Lists.newArrayList(result));
         }
+
         return results;
     }
 
-    private String formatDate(Date date) {
-        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-mm-dd");
-        return formatter.format(date);
-    }
 }
 
