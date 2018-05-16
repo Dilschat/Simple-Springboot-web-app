@@ -7,6 +7,7 @@ import java.util.Date;
 
 @Component
 public class SearchingForm {
+
     private String text;
     @DateTimeFormat(pattern = "yyyy-mm-dd")
     private Date releaseDateFrom;

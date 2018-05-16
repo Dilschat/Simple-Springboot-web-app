@@ -16,6 +16,7 @@ import java.util.*;
 @Component
 @Scope("prototype")
 public class BiosamplesAccessPoint {
+
     private BioSamplesClient client;
 
     @Autowired

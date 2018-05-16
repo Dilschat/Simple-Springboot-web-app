@@ -17,13 +17,19 @@ import javax.validation.Valid;
 
 import static org.springframework.web.bind.annotation.RequestMethod.GET;
 
+
 @Controller
 @EnableAutoConfiguration
 public class SearchController {
+
+    private SearchingForm form;
+    private BiosamplesAccessPoint accessPoint;
+
     @Autowired
-    protected SearchingForm form;
-    @Autowired
-    protected BiosamplesAccessPoint accessPoint;
+    SearchController(SearchingForm searchingForm, BiosamplesAccessPoint biosamplesAccessPoint) {
+        this.form = searchingForm;
+        this.accessPoint = biosamplesAccessPoint;
+    }
 
     @GetMapping("/SearchingForm")
     public String getSearchForm(Model model) {
@@ -31,7 +37,7 @@ public class SearchController {
         return "SearchingForm";
     }
 
-    @RequestMapping(value = "/SearchingForm/result", method = GET)
+    @RequestMapping(value = "/SearchingForm", method = GET)
     @ResponseBody
     public Iterable<Resource<Sample>> submitForm(@Valid @ModelAttribute("SearchingForm") SearchingForm form) {
         return accessPoint.getFilteredSamplesBySearchForm(form);

@@ -4,6 +4,7 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class Biosample {
+
     private String name;
     private String accession;
     private String domain;

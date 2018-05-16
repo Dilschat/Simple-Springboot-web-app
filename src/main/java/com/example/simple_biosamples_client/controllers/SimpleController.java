@@ -15,8 +15,12 @@ import java.util.List;
 @EnableAutoConfiguration
 public class SimpleController {
 
+    private BiosamplesAccessPoint accessPoint;
+
     @Autowired
-    protected BiosamplesAccessPoint accessPoint;
+    SimpleController(BiosamplesAccessPoint biosamplesAccessPoint) {
+        this.accessPoint = biosamplesAccessPoint;
+    }
 
     @RequestMapping(value="/getSample/{sampleID}", method=RequestMethod.GET)
     Sample getSample(@PathVariable String sampleID) {
