@@ -7,29 +7,21 @@ import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.hateoas.Resource;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 import uk.ac.ebi.biosamples.model.Sample;
 
 import javax.validation.Valid;
-
-import static org.springframework.web.bind.annotation.RequestMethod.GET;
 
 
 @Controller
 @EnableAutoConfiguration
 public class SearchController {
 
-    private SearchingForm form;
-    private BiosamplesAccessPoint accessPoint;
-
     @Autowired
-    SearchController(SearchingForm searchingForm, BiosamplesAccessPoint biosamplesAccessPoint) {
-        this.form = searchingForm;
-        this.accessPoint = biosamplesAccessPoint;
-    }
+    protected SearchingForm form;
+    @Autowired
+    protected BiosamplesAccessPoint accessPoint;
+
 
     @GetMapping("/SearchingForm")
     public String getSearchForm(Model model) {
@@ -37,7 +29,7 @@ public class SearchController {
         return "SearchingForm";
     }
 
-    @RequestMapping(value = "/SearchingForm", method = GET)
+    @RequestMapping(value = "/SearchingForm/result", method = RequestMethod.GET)
     @ResponseBody
     public Iterable<Resource<Sample>> submitForm(@Valid @ModelAttribute("SearchingForm") SearchingForm form) {
         return accessPoint.getFilteredSamplesBySearchForm(form);

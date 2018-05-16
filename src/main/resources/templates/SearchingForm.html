@@ -6,7 +6,7 @@
 </head>
 <body>
 <h1>Form</h1>
-<form action="/SearchingForm" th:action="@{/SearchingForm}" th:object="${SearchingForm}" method="get">
+<form action="/SearchingForm/result" th:action="@{/SearchingForm/result}" th:object="${SearchingForm}" method="get">
     <p>Text for search: <input type="text" th:field="*{text}"/></p>
     <p>release from: <input type="date" th:field="*{releaseDateFrom}"/></p>
     <p>release until: <input type="date" th:field="*{releaseDateUntil}"/></p>

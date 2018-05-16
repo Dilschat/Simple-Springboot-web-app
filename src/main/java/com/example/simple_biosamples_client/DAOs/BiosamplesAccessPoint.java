@@ -1,6 +1,8 @@
 package com.example.simple_biosamples_client.DAOs;
 
 import com.example.simple_biosamples_client.models.SearchingForm;
+import com.example.simple_biosamples_client.services.FilterCreatorForGA4GH;
+import com.google.common.collect.Lists;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.hateoas.Resource;
@@ -18,10 +20,12 @@ import java.util.*;
 public class BiosamplesAccessPoint {
 
     private BioSamplesClient client;
+    private FilterCreatorForGA4GH filterCreator;
 
     @Autowired
-    BiosamplesAccessPoint(BioSamplesClient bioSamplesClient) {
+    BiosamplesAccessPoint(BioSamplesClient bioSamplesClient, FilterCreatorForGA4GH filterCreator) {
         this.client = bioSamplesClient;
+        this.filterCreator = filterCreator;
     }
 
     public Sample getSample(String sampleID) throws NoSuchElementException {
@@ -43,15 +47,20 @@ public class BiosamplesAccessPoint {
     }
 
     public Iterable<Resource<Sample>> getFilteredSamplesBySearchForm(SearchingForm form) {
-        Filter releaseDateFromFilter = FilterBuilder.create()
+        Filter releaseDateFilter = FilterBuilder.create()
                 .onReleaseDate()
-                .from(formatDate(form.getReleaseDateFrom())).build();
-        Filter releaseDateUntilFilter = FilterBuilder.create()
-                .onReleaseDate().until(formatDate(form.getReleaseDateUntil())).build();
-        Collection<Filter> filters = new LinkedList<>();
-        filters.add(releaseDateFromFilter);
-        filters.add(releaseDateUntilFilter);
-        return client.fetchSampleResourceAll(form.getText(), filters);
+                .from(formatDate(form.getReleaseDateFrom()))
+                .until(formatDate(form.getReleaseDateUntil()))
+                .build();
+        Collection<Collection<Filter>> filters = filterCreator.getFilters();
+        ArrayList<Resource<Sample>> results = new ArrayList<>();
+
+        for (Collection<Filter> filter : filters) {
+            filter.add(releaseDateFilter);
+            Iterable<Resource<Sample>> result = client.fetchSampleResourceAll(form.getText(), filter);
+            results.addAll(Lists.newArrayList(result));
+        }
+        return results;
     }
 
     private String formatDate(Date date) {
