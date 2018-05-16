@@ -1,5 +1,6 @@
 package com.example.simple_biosamples_client.DAOs;
 
+import com.example.simple_biosamples_client.models.SearchingForm;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.hateoas.Resource;
@@ -9,6 +10,7 @@ import uk.ac.ebi.biosamples.model.Sample;
 import uk.ac.ebi.biosamples.model.filter.Filter;
 import uk.ac.ebi.biosamples.service.FilterBuilder;
 
+import java.text.SimpleDateFormat;
 import java.util.*;
 
 @Component
@@ -39,5 +41,21 @@ public class BiosamplesAccessPoint {
         return client.fetchSampleResourceAll(text, filters);
     }
 
+    public Iterable<Resource<Sample>> getFilteredSamplesBySearchForm(SearchingForm form) {
+        Filter releaseDateFromFilter = FilterBuilder.create()
+                .onReleaseDate()
+                .from(formatDate(form.getReleaseDateFrom())).build();
+        Filter releaseDateUntilFilter = FilterBuilder.create()
+                .onReleaseDate().until(formatDate(form.getReleaseDateUntil())).build();
+        Collection<Filter> filters = new LinkedList<>();
+        filters.add(releaseDateFromFilter);
+        filters.add(releaseDateUntilFilter);
+        return client.fetchSampleResourceAll(form.getText(), filters);
+    }
+
+    private String formatDate(Date date) {
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-mm-dd");
+        return formatter.format(date);
+    }
 }
 

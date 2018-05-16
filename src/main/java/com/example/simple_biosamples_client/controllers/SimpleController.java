@@ -18,12 +18,6 @@ public class SimpleController {
     @Autowired
     protected BiosamplesAccessPoint accessPoint;
 
-
-    @RequestMapping("/helloworld")
-    String helloWorld(){
-        return "Hello world!";
-    }
-
     @RequestMapping(value="/getSample/{sampleID}", method=RequestMethod.GET)
     Sample getSample(@PathVariable String sampleID) {
         Sample biosample = accessPoint.getSample(sampleID);
