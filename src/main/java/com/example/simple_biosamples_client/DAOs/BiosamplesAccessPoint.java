@@ -1,7 +1,7 @@
 package com.example.simple_biosamples_client.DAOs;
 
 import com.example.simple_biosamples_client.models.SearchingForm;
-import com.example.simple_biosamples_client.services.FilterCreatorForGA4GH;
+import com.example.simple_biosamples_client.services.FilterCreator;
 import com.google.common.collect.Lists;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
@@ -19,10 +19,10 @@ import java.util.*;
 public class BiosamplesAccessPoint {
 
     private BioSamplesClient client;
-    private FilterCreatorForGA4GH filterCreator;
+    private FilterCreator filterCreator;
 
     @Autowired
-    BiosamplesAccessPoint(BioSamplesClient bioSamplesClient, FilterCreatorForGA4GH filterCreator) {
+    BiosamplesAccessPoint(BioSamplesClient bioSamplesClient, FilterCreator filterCreator) {
         this.client = bioSamplesClient;
         this.filterCreator = filterCreator;
     }
@@ -46,17 +46,9 @@ public class BiosamplesAccessPoint {
     }
 
     public Iterable<Resource<Sample>> getFilteredSamplesBySearchForm(SearchingForm form) {
-        Filter releaseDateFilter = FilterBuilder.create()
-                .onReleaseDate()
-                .from(form.getReleaseDateFrom().toString())
-                .until(form.getReleaseDateUntil().toString())
-                .build();
-
-        Collection<Collection<Filter>> filters = filterCreator.getFilters();
+        Collection<Collection<Filter>> filters = filterCreator.createFilters(form);
         ArrayList<Resource<Sample>> results = new ArrayList<>();
-
         for (Collection<Filter> filter : filters) {
-            filter.add(releaseDateFilter);
             Iterable<Resource<Sample>> result = client.fetchSampleResourceAll(form.getText(), filter);
             results.addAll(Lists.newArrayList(result));
         }
