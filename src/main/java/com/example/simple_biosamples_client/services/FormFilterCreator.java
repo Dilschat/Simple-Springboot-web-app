@@ -11,7 +11,7 @@ import java.util.Collection;
 import java.util.Date;
 
 @Service
-public class FormFilterCreator {
+class FormFilterCreator {
     private FilterBuilder builder;
     private Collection<Filter> filters;
 
@@ -20,18 +20,17 @@ public class FormFilterCreator {
         filters = new ArrayList<>();
     }
 
-    public Collection<Filter> getFilters(SearchingForm form) {
+    Collection<Filter> getFilters(SearchingForm form) {
         filters.add(createReleaseDateFilters(form.getReleaseDateFrom(), form.getReleaseDateUntil()));
         return filters;
     }
 
     private Filter createReleaseDateFilters(Date from, Date until) {
-        Filter filter = builder
+        return builder
                 .onReleaseDate()
                 .from(dateFormatter(from))
                 .until(dateFormatter(until))
                 .build();
-        return filter;
     }
 
     private String dateFormatter(Date date) {

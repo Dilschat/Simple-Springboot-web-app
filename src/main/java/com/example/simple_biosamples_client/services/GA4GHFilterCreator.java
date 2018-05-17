@@ -10,7 +10,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 @Service
-public class GA4GHFilterCreator {
+class GA4GHFilterCreator {
 
     private FilterBuilder builder;
     private Collection<Collection<Filter>> filters;
@@ -18,7 +18,7 @@ public class GA4GHFilterCreator {
     private final List<String> attributeLabels = Arrays.asList("Organism", "organism");
     private final List<String> values = Arrays.asList("Homo sapiens", "homo sapiens");
 
-    public GA4GHFilterCreator() {
+    GA4GHFilterCreator() {
         builder = FilterBuilder.create();
         filters = new LinkedList<>();
         createFilters();
