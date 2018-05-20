@@ -9,91 +9,42 @@ import reactor.core.publisher.Flux;
 import reactor.core.scheduler.Schedulers;
 
 import java.io.*;
-import java.net.URL;
-import java.net.URLConnection;
-import java.util.ArrayList;
-import java.util.List;
 
 @RestController
 @EnableAutoConfiguration
 public class DownloaderController {
 
-
     @RequestMapping("/download")
     String downloadFile() throws IOException {
-        URL url = new URL("ftp://ftp.ebi.ac.uk/pub/databases/ena/sequence/release/con/rel_con_fun_02_r135.dat.gz");
-        URLConnection connection = url.openConnection();
-        File target = new File("readme.txt");
-        List<Integer> list = new ArrayList<>();
-        Flux.just(1)
+        Flux.just("test.rebex.net/pub/example/readme.txt")
                 .log()
-                .map(i -> i * 2)
-                .subscribeOn(Schedulers.parallel())
-                .subscribe(list::add);
-        target.createNewFile();
-
-
-        try {
-            System.out.println("hello");
-            FTPClient client = new FTPClient();
-            client.connect("test.rebex.net");
-            client.login("demo", "password");
-            System.out.println(client.getReplyString());
-            int code = client.getReplyCode();
-
-            OutputStream outputStream = new BufferedOutputStream(new FileOutputStream(target));
-            client.enterLocalPassiveMode();
-            System.out.println("hello");
-            client.setFileType(FTP.ASCII_FILE_TYPE);
-            Flux.just("/pub/example/readme.txt")
                     .subscribeOn(Schedulers.parallel())
                     .map(i -> {
                         try {
-                            return client.retrieveFile(i, outputStream);
+                            String[] ftpServerPaths = i.split("/", 2);
+                            File target = new File("readme.txt");
+                            boolean fileCreated = target.createNewFile();
+                            if (!fileCreated) {
+                                return "File creation failed. Download canceled!";
+                            }
+
+                            FTPClient client = new FTPClient();
+                            client.connect(ftpServerPaths[0]);
+                            client.login("demo", "password"); // log and pass just for this example impl
+                            System.out.println(client.getReplyString());
+                            OutputStream outputStream = new BufferedOutputStream(new FileOutputStream(target));
+                            client.enterLocalPassiveMode();
+                            client.setFileType(FTP.ASCII_FILE_TYPE);
+                            client.retrieveFile(ftpServerPaths[1], outputStream);
+                            outputStream.close();
+                            client.disconnect();
+                            return i;
                         } catch (IOException e) {
                             e.printStackTrace();
                         }
                         return i;
                     })
                     .subscribe();
-//            boolean success = client
-//                    .retrieveFile("/pub/example/readme.txt",outputStream);
-//            System.out.println("hello");
-            //InputStream inputStream = client.retrieveFileStream("/pub/example/readme.txt");
-
-//            if (success){
-//                System.out.println("success");
-//            }
-            outputStream.close();
-            client.disconnect();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-//        Mono.just(url)
-//                .log()
-//                .map(stream -> {
-//                    try {
-//                        System.out.println("hello");
-//                        FTPClient client = new FTPClient();
-//                        client.connect("ftp://ftp.ebi.ac.uk");
-//                        client.setFileType(FTP.COMPRESSED_TRANSFER_MODE);
-//                        FileOutputStream outputStream = new FileOutputStream(target);
-//                        boolean success = client
-//                                .retrieveFile("/pub/databases/ena/sequence/release/con/rel_con_fun_02_r135.dat.gz",outputStream);
-//                        if (success){
-//                            System.out.println("success");
-//                        }
-//                        outputStream.flush();
-//                        outputStream.close();
-//                        client.disconnect();
-//                    } catch (IOException e) {
-//                        e.printStackTrace();
-//                    }
-//
-//                    return target;
-//                })
-//                .subscribeOn(Schedulers.parallel())
-//                .subscribe();
 
         return "File will be downloaded";
     }
