@@ -3,7 +3,7 @@ package com.example.simple_biosamples_client.models;
 import org.springframework.stereotype.Component;
 
 @Component
-public class Biosample {
+public class Biosamples {
 
     private String name;
     private String accession;
