@@ -2,6 +2,8 @@ package com.example.simple_biosamples_client.models.ga4ghmetadata;
 
 import org.springframework.stereotype.Component;
 
+import java.util.SortedSet;
+
 @Component
 public class Biosample {
 
@@ -9,7 +11,7 @@ public class Biosample {
     private String dataset_id;
     private String name;
     private String description;
-    private Biocharacteristics[] bio_characteristic;
+    private SortedSet<Biocharacteristics> bio_characteristic;
     private String created;
     private String updated;
     private String individual_id;
@@ -50,11 +52,11 @@ public class Biosample {
         this.description = description;
     }
 
-    public Biocharacteristics[] getBio_characteristic() {
+    public SortedSet<Biocharacteristics> getBio_characteristic() {
         return bio_characteristic;
     }
 
-    public void setBio_characteristic(Biocharacteristics[] bio_characteristic) {
+    public void setBio_characteristic(SortedSet<Biocharacteristics> bio_characteristic) {
         this.bio_characteristic = bio_characteristic;
     }
 

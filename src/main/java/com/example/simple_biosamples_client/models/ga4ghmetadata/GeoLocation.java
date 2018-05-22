@@ -2,7 +2,7 @@ package com.example.simple_biosamples_client.models.ga4ghmetadata;
 
 public class GeoLocation {
     private String label;
-    private String orecision;
+    private String precision;
     private double latitude;
     private double longtitude;
     private double altitude;
@@ -16,11 +16,11 @@ public class GeoLocation {
     }
 
     public String getOrecision() {
-        return orecision;
+        return precision;
     }
 
     public void setOrecision(String orecision) {
-        this.orecision = orecision;
+        this.precision = orecision;
     }
 
     public double getLatitude() {
