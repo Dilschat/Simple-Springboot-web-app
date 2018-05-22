@@ -52,9 +52,11 @@ public class BiosampleToGA4GHMapper {
 
 
         }
+        mapLocation(locationInfo);
+
     }
 
-    private void mapLocation(Attribute attribute) {
+    private void mapLocation(SortedSet<Attribute> attributes) {
         GeoLocation geoLocation = new GeoLocation();
 
 
