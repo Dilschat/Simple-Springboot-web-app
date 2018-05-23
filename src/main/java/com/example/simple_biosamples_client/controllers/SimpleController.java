@@ -1,8 +1,8 @@
 package com.example.simple_biosamples_client.controllers;
 
 import com.example.simple_biosamples_client.DAOs.BiosamplesAccessPoint;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.SerializationFeature;
+import com.example.simple_biosamples_client.models.ga4ghmetadata.Biosample;
+import com.example.simple_biosamples_client.services.BiosampleToGA4GHMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.hateoas.Resource;
@@ -18,9 +18,10 @@ import java.util.SortedSet;
 public class SimpleController {
 
     private BiosamplesAccessPoint accessPoint;
-
+    private BiosampleToGA4GHMapper toGA4GHMapper;
     @Autowired
-    SimpleController(BiosamplesAccessPoint biosamplesAccessPoint) {
+    SimpleController(BiosamplesAccessPoint biosamplesAccessPoint, BiosampleToGA4GHMapper mapper) {
+        this.toGA4GHMapper = mapper;
         this.accessPoint = biosamplesAccessPoint;
     }
 
@@ -28,8 +29,7 @@ public class SimpleController {
     Sample getSample(@PathVariable String sampleID) {
         Sample biosample = accessPoint.getSample(sampleID);
         SortedSet<Attribute> c = biosample.getCharacteristics();
-        ObjectMapper mapper = new ObjectMapper();
-        mapper.enable(SerializationFeature.INDENT_OUTPUT);
+        Biosample biosample1 = toGA4GHMapper.mapSampleToGA4GH(biosample);
         return biosample;
     }
 

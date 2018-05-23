@@ -20,12 +20,12 @@ public class BiosampleToGA4GHMapper {
     private Biosample ga4ghSample;
     private GeoLocationDataHelper locationHelper;
     @Autowired
-    BiosampleToGA4GHMapper(Biosample ga4ghSample, GeoLocationDataHelper helper) {
+    public BiosampleToGA4GHMapper(Biosample ga4ghSample, GeoLocationDataHelper helper) {
         this.ga4ghSample = ga4ghSample;
         this.locationHelper = helper;
     }
 
-    Biosample mapSampleToGA4GH(Sample rawSample) {
+    public Biosample mapSampleToGA4GH(Sample rawSample) {
         ga4ghSample.setId(rawSample.getAccession());
         ga4ghSample.setDataset_id(rawSample.getDomain());
         ga4ghSample.setName(rawSample.getName());
@@ -65,14 +65,18 @@ public class BiosampleToGA4GHMapper {
             switch (attribute.getType()) {
                 case "geographic location":
                     geoLocation.setLabel(attribute.getValue());
+                    break;
                 case "latitude and longitude":
                     Location location = locationHelper.convertToDecimalDegree(attribute.getValue());
                     geoLocation.setLatitude(location.getLatitude());
                     geoLocation.setLongtitude(location.getLongtitude());
+                    break;
                 case "latitude":
                     geoLocation.setLatitude(Double.parseDouble(attribute.getValue()));
+                    break;
                 case "longtitude":
                     geoLocation.setLongtitude((Double.parseDouble(attribute.getValue())));
+                    break;
                 case "altitude":
                     geoLocation.setAltitude(Double.parseDouble(attribute.getValue()));
             }
@@ -92,6 +96,7 @@ public class BiosampleToGA4GHMapper {
 
     private OntologyTerm getOntologyTerm(Attribute attribute) {
         OntologyTerm term = new OntologyTerm();
+        //TODO termid
         term.setTerm_label(attribute.getType());
         term.setTerm_id(attribute.getIriOls());
         return term;

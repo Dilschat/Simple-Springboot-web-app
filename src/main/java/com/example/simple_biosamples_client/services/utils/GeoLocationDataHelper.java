@@ -1,13 +1,16 @@
 package com.example.simple_biosamples_client.services.utils;
 
+import org.springframework.stereotype.Component;
+
 import java.util.Scanner;
 
+@Component
 public class GeoLocationDataHelper {
 
     public boolean isGeoLocationData(String type) {
         boolean isGeolocation = type.contains("geographic location");
-        isGeolocation = isGeolocation || type.contains("latitiude");
-        isGeolocation = isGeolocation || type.contains("longtitude");
+        isGeolocation = isGeolocation || type.contains("latitude");
+        isGeolocation = isGeolocation || type.contains("longitude");
         isGeolocation = isGeolocation || type.contains("altitude");
         return isGeolocation;
     }
@@ -23,8 +26,11 @@ public class GeoLocationDataHelper {
         }
         Scanner scanner = new Scanner(location);
         double latitude = scanner.nextDouble();
+        while (!scanner.hasNextDouble()) {
+            scanner.next();
+        }
         double longtitude = scanner.nextDouble();
-        return new Location(latitude, longtitude);
+        return new Location(latitude * nsCoef, longtitude * weCoef);
 
     }
 }
