@@ -4,6 +4,8 @@ import com.example.simple_biosamples_client.models.ga4ghmetadata.Age;
 import com.example.simple_biosamples_client.models.ga4ghmetadata.Biosample;
 import com.example.simple_biosamples_client.models.ga4ghmetadata.GeoLocation;
 import com.example.simple_biosamples_client.models.ga4ghmetadata.OntologyTerm;
+import com.example.simple_biosamples_client.services.utils.GeoLocationDataHelper;
+import com.example.simple_biosamples_client.services.utils.Location;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import uk.ac.ebi.biosamples.model.Attribute;
@@ -16,10 +18,11 @@ import java.util.TreeSet;
 public class BiosampleToGA4GHMapper {
 
     private Biosample ga4ghSample;
-
+    private GeoLocationDataHelper locationHelper;
     @Autowired
-    BiosampleToGA4GHMapper(Biosample ga4ghSample) {
+    BiosampleToGA4GHMapper(Biosample ga4ghSample, GeoLocationDataHelper helper) {
         this.ga4ghSample = ga4ghSample;
+        this.locationHelper = helper;
     }
 
     Biosample mapSampleToGA4GH(Sample rawSample) {
@@ -46,7 +49,7 @@ public class BiosampleToGA4GHMapper {
                 mapAge(attribute);
                 break;
             }
-            if (isGeoLocationData(type)) {
+            if (locationHelper.isGeoLocationData(type)) {
                 locationInfo.add(attribute);
             }
 
@@ -58,7 +61,25 @@ public class BiosampleToGA4GHMapper {
 
     private void mapLocation(SortedSet<Attribute> attributes) {
         GeoLocation geoLocation = new GeoLocation();
+        for (Attribute attribute : attributes) {
+            switch (attribute.getType()) {
+                case "geographic location":
+                    geoLocation.setLabel(attribute.getValue());
+                case "latitude and longitude":
+                    Location location = locationHelper.convertToDecimalDegree(attribute.getValue());
+                    geoLocation.setLatitude(location.getLatitude());
+                    geoLocation.setLongtitude(location.getLongtitude());
+                case "latitude":
+                    geoLocation.setLatitude(Double.parseDouble(attribute.getValue()));
+                case "longtitude":
+                    geoLocation.setLongtitude((Double.parseDouble(attribute.getValue())));
+                case "altitude":
+                    geoLocation.setAltitude(Double.parseDouble(attribute.getValue()));
+            }
+        }
 
+        //TODO make precision
+        ga4ghSample.setLocation(geoLocation);
 
     }
 
@@ -74,14 +95,6 @@ public class BiosampleToGA4GHMapper {
         term.setTerm_label(attribute.getType());
         term.setTerm_id(attribute.getIriOls());
         return term;
-    }
-
-    private boolean isGeoLocationData(String type) {
-        boolean isGeolocation = type.contains("geographic location");
-        isGeolocation = isGeolocation || type.contains("latitiude");
-        isGeolocation = isGeolocation || type.contains("longtitude");
-        isGeolocation = isGeolocation || type.contains("altitude");
-        return isGeolocation;
     }
 
 
