@@ -15,12 +15,12 @@ public class GeoLocation {
         this.label = label;
     }
 
-    public String getOrecision() {
+    public String getPrecision() {
         return precision;
     }
 
-    public void setOrecision(String orecision) {
-        this.precision = orecision;
+    public void setPrecision(String precision) {
+        this.precision = precision;
     }
 
     public double getLatitude() {

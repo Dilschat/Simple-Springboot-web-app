@@ -12,6 +12,7 @@ public class GeoLocationDataHelper {
         isGeolocation = isGeolocation || type.contains("latitude");
         isGeolocation = isGeolocation || type.contains("longitude");
         isGeolocation = isGeolocation || type.contains("altitude");
+        isGeolocation = isGeolocation || type.contains("precision");
         return isGeolocation;
     }
 

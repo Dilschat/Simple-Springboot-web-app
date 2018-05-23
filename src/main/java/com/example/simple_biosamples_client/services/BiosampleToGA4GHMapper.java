@@ -1,14 +1,12 @@
 package com.example.simple_biosamples_client.services;
 
-import com.example.simple_biosamples_client.models.ga4ghmetadata.Age;
-import com.example.simple_biosamples_client.models.ga4ghmetadata.Biosample;
-import com.example.simple_biosamples_client.models.ga4ghmetadata.GeoLocation;
-import com.example.simple_biosamples_client.models.ga4ghmetadata.OntologyTerm;
+import com.example.simple_biosamples_client.models.ga4ghmetadata.*;
 import com.example.simple_biosamples_client.services.utils.GeoLocationDataHelper;
 import com.example.simple_biosamples_client.services.utils.Location;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import uk.ac.ebi.biosamples.model.Attribute;
+import uk.ac.ebi.biosamples.model.Relationship;
 import uk.ac.ebi.biosamples.model.Sample;
 
 import java.util.SortedSet;
@@ -29,9 +27,8 @@ public class BiosampleToGA4GHMapper {
         ga4ghSample.setId(rawSample.getAccession());
         ga4ghSample.setDataset_id(rawSample.getDomain());
         ga4ghSample.setName(rawSample.getName());
-        ga4ghSample.setCreated(rawSample.getReleaseDate());
-        ga4ghSample.setUpdated(rawSample.getUpdateDate());
         mapCharacteristics(rawSample);
+        mapRelationsihps(rawSample);
         return ga4ghSample;
     }
 
@@ -48,15 +45,17 @@ public class BiosampleToGA4GHMapper {
             if (type.equals("age")) {
                 mapAge(attribute);
                 break;
-            }
-            if (locationHelper.isGeoLocationData(type)) {
+            } else if (locationHelper.isGeoLocationData(type)) {
                 locationInfo.add(attribute);
+            } else if (type.equals("individual")) {
+                ga4ghSample.setIndividual_id(attribute.getValue());
+            } else if (type.equals("dataset")) {
+                ga4ghSample.setDataset_id(attribute.getValue());
+            } else if (type.equals("description")) {
+                ga4ghSample.setDescription(attribute.getValue());
             }
-
-
         }
         mapLocation(locationInfo);
-
     }
 
     private void mapLocation(SortedSet<Attribute> attributes) {
@@ -79,14 +78,31 @@ public class BiosampleToGA4GHMapper {
                     break;
                 case "altitude":
                     geoLocation.setAltitude(Double.parseDouble(attribute.getValue()));
+                    break;
+                case "precision":
+                    geoLocation.setPrecision(attribute.getValue());
             }
         }
 
-        //TODO make precision
         ga4ghSample.setLocation(geoLocation);
 
     }
 
+    private void mapRelationsihps(Sample rawSample) {
+        SortedSet<ExternalIdentifier> externalIdentifiers = new TreeSet<>();
+        for (Relationship relationship : rawSample.getRelationships()) {
+            ExternalIdentifier identifier = new ExternalIdentifier();
+            identifier.setRelation(relationship.getType());
+            if (relationship.getSource().equals(rawSample.getAccession())) {
+                identifier.setIdentifier(relationship.getSource());
+            } else {
+                identifier.setIdentifier(relationship.getTarget());
+            }
+            externalIdentifiers.add(identifier);
+
+        }
+        ga4ghSample.setExternal_identifiers(externalIdentifiers);
+    }
     private void mapAge(Attribute attribute) {
         Age age = new Age();
         age.setAge(attribute.getValue());
@@ -96,9 +112,9 @@ public class BiosampleToGA4GHMapper {
 
     private OntologyTerm getOntologyTerm(Attribute attribute) {
         OntologyTerm term = new OntologyTerm();
-        //TODO termid
-        term.setTerm_label(attribute.getType());
+        term.setTerm_label(attribute.getValue());
         term.setTerm_id(attribute.getIriOls());
+        //TODO term id
         return term;
     }
 

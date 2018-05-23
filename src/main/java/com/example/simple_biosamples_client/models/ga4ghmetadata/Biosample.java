@@ -12,11 +12,9 @@ public class Biosample {
     private String name;
     private String description;
     private SortedSet<Biocharacteristics> bio_characteristic;
-    private String created;
-    private String updated;
     private String individual_id;
     private Attributes attributes;
-    private ExternalIdentifier external_identifier;
+    private SortedSet<ExternalIdentifier> external_identifiers;
     private Age individual_age_at_collection;
     private GeoLocation location;
 
@@ -60,22 +58,6 @@ public class Biosample {
         this.bio_characteristic = bio_characteristic;
     }
 
-    public String getCreated() {
-        return created;
-    }
-
-    public void setCreated(String created) {
-        this.created = created;
-    }
-
-    public String getUpdated() {
-        return updated;
-    }
-
-    public void setUpdated(String updated) {
-        this.updated = updated;
-    }
-
     public String getIndividual_id() {
         return individual_id;
     }
@@ -92,12 +74,12 @@ public class Biosample {
         this.attributes = attributes;
     }
 
-    public ExternalIdentifier getExternal_identifier() {
-        return external_identifier;
+    public SortedSet<ExternalIdentifier> getExternal_identifiers() {
+        return external_identifiers;
     }
 
-    public void setExternal_identifier(ExternalIdentifier external_identifier) {
-        this.external_identifier = external_identifier;
+    public void setExternal_identifiers(SortedSet<ExternalIdentifier> external_identifiers) {
+        this.external_identifiers = external_identifiers;
     }
 
     public Age getIndividual_age_at_collection() {
