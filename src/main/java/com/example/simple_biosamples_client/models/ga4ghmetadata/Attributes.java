@@ -10,7 +10,6 @@ import java.util.TreeMap;
 public class Attributes {
     private SortedMap<String, List<AttributeValue>> attributes;
 
-
     Attributes() {
         this.attributes = new TreeMap<>();
     }

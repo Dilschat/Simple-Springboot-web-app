@@ -1,21 +1,75 @@
 package com.example.simple_biosamples_client.models.ga4ghmetadata;
 
+import java.util.List;
 
-public enum AttributeValue {
-    string_value, int64_value,
-    bool_value,
-    double_value,
-    external_identifier,
-    ontology_term,
-    experiment,
-    //Program program;
-    analysis;
+public class AttributeValue {
 
-    Object value;
+    private String type;
+    private Object value;
 
-    public AttributeValue create(Object object) {
-        this.value = object;
-        return this;
+    public AttributeValue(Object value) {
+        if (value instanceof String) {
+            type = "string_value";
+            this.value = value;
+        } else if (value instanceof Long) {
+            type = "int64_value";
+            this.value = value;
+        } else if (value instanceof Boolean) {
+            type = "bool_value";
+            this.value = value;
+        } else if (value instanceof Double) {
+            type = "double_value";
+            this.value = value;
+        } else if (value instanceof ExternalIdentifier) {
+            type = "external_identifier";
+            this.value = value;
+        } else if (value instanceof OntologyTerm) {
+            type = "ontology_term";
+            this.value = value;
+        } else if (value instanceof Experiment) {
+            type = "experiment";
+            this.value = value;
+        } else if (value instanceof Analysis) {
+            type = "analysis";
+            this.value = value;
+        } else if (value == null) {
+            type = "null_value";
+            this.value = value;
+        } else if (value instanceof Attributes) {
+            type = "attributes";
+            this.value = value;
+        } else if (isListOfAttributes(value)) {
+            type = "attribute_list";
+            this.value = value;
+        } else {
+            throw new TypeNotPresentException("Type is not supported", new Exception());
+        }
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    public Object getValue() {
+        return value;
+    }
+
+    public void setValue(Object value) {
+        this.value = value;
+    }
+
+    private boolean isListOfAttributes(Object value) {
+        try {
+            List<AttributeValue> attributeValues = (List<AttributeValue>) value;
+            return true;
+        } catch (ClassCastException e) {
+            return false;
+        }
+
     }
 
 }

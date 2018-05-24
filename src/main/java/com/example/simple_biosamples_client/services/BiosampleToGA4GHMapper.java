@@ -9,6 +9,8 @@ import uk.ac.ebi.biosamples.model.Attribute;
 import uk.ac.ebi.biosamples.model.Relationship;
 import uk.ac.ebi.biosamples.model.Sample;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.SortedSet;
 import java.util.TreeSet;
 
@@ -29,6 +31,7 @@ public class BiosampleToGA4GHMapper {
         ga4ghSample.setName(rawSample.getName());
         mapCharacteristics(rawSample);
         mapRelationsihps(rawSample);
+        mapRemainingData(rawSample);
         return ga4ghSample;
     }
 
@@ -38,9 +41,12 @@ public class BiosampleToGA4GHMapper {
     }
 
     private void mapCharacteristics(Sample rawSample) {
-        SortedSet<Attribute> attributes = rawSample.getCharacteristics();
+        SortedSet<Attribute> characteristics = rawSample.getCharacteristics();
         SortedSet<Attribute> locationInfo = new TreeSet<>();
-        for (Attribute attribute : attributes) {
+        List<Attribute> attributes = new ArrayList<>();
+        List<Attribute> bioCharacteristics = new ArrayList<>();
+
+        for (Attribute attribute : characteristics) {
             String type = attribute.getType();
             if (type.equals("age")) {
                 mapAge(attribute);
@@ -53,9 +59,18 @@ public class BiosampleToGA4GHMapper {
                 ga4ghSample.setDataset_id(attribute.getValue());
             } else if (type.equals("description")) {
                 ga4ghSample.setDescription(attribute.getValue());
+            } else {
+                if (attribute.getValue() != null && attribute.getIri() != null) {
+                    attributes.add(attribute);
+                } else {
+                    bioCharacteristics.add(attribute);
+                }
             }
+
         }
         mapLocation(locationInfo);
+        mapAttributes(attributes);
+        mapBioCharacteristics(bioCharacteristics);
     }
 
     private void mapLocation(SortedSet<Attribute> attributes) {
@@ -110,6 +125,28 @@ public class BiosampleToGA4GHMapper {
         ga4ghSample.setIndividual_age_at_collection(age);
     }
 
+    private void mapAttributes(List<Attribute> attributes) {
+        for (Attribute attribute : attributes) {
+            ArrayList<AttributeValue> values = new ArrayList<>();
+            AttributeValue value = new AttributeValue(attribute.getValue());
+            values.add(value);
+            ga4ghSample.addAttributeList(attribute.getType(), values);
+        }
+    }
+
+    private void mapBioCharacteristics(List<Attribute> bioCharacteristics) {
+
+
+    }
+
+    private void mapRemainingData(Sample rawSample) {
+        ga4ghSample.addSingleAttributeValue("released", rawSample.getReleaseDate());
+        ga4ghSample.addSingleAttributeValue("updated", rawSample.getUpdateDate());
+        ga4ghSample.addSingleAttributeValue("domain", rawSample.getDomain());
+        ga4ghSample.addAttributeList("contacts", convertObjectsToAttributeValues(rawSample.getContacts()));
+
+
+    }
     private OntologyTerm getOntologyTerm(Attribute attribute) {
         OntologyTerm term = new OntologyTerm();
         term.setTerm_label(attribute.getValue());
@@ -117,6 +154,17 @@ public class BiosampleToGA4GHMapper {
         //TODO term id
         return term;
     }
+
+    private List<AttributeValue> convertObjectsToAttributeValues(SortedSet values) {
+        List<AttributeValue> attributes = new ArrayList<>();
+        for (Object value : values) {
+            AttributeValue attributeValue = new AttributeValue(value);
+            attributes.add(attributeValue);
+        }
+        return attributes;
+
+    }
+
 
 
 }

@@ -1,8 +1,12 @@
 package com.example.simple_biosamples_client.models.ga4ghmetadata;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.SortedSet;
+import java.util.TreeSet;
 
 @Component
 public class Biosample {
@@ -18,6 +22,11 @@ public class Biosample {
     private Age individual_age_at_collection;
     private GeoLocation location;
 
+    @Autowired
+    Biosample(Attributes attributes) {
+        this.attributes = attributes;
+        bio_characteristic = new TreeSet<>();
+    }
     public String getId() {
         return id;
     }
@@ -96,6 +105,21 @@ public class Biosample {
 
     public void setLocation(GeoLocation location) {
         this.location = location;
+    }
+
+    public void addAttributeList(String label, List<AttributeValue> value) {
+        attributes.addAttribute(label, value);
+    }
+
+    public void addSingleAttributeValue(String label, Object value) {
+        List<AttributeValue> values = new ArrayList<>();
+        values.add(new AttributeValue(value));
+        addAttributeList(label, values);
+
+    }
+
+    public void addBioCharacteristic(Biocharacteristics biocharacteristics) {
+        bio_characteristic.add(biocharacteristics);
     }
 
 
