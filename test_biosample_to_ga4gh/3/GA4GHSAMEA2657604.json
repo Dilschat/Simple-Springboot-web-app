@@ -1,0 +1,197 @@
+{
+  "id": "SAMEA2657604",
+  "name": "source GSM1281862 1",
+  "dataset_id": null,
+  "individual_id": null,
+  "description": null,
+  "bio_characteristics": [
+    {
+      "description": "Organism",
+      "ontology_terms": [
+        {
+          "term_id": "NCBITaxon:9606",
+          "term_label": "Homo sapiens"
+        }
+      ],
+      "negated_ontology_terms": [],
+      "scope": null
+    },
+    {
+      "description": "Sex",
+      "ontology_terms": [
+        {
+          "term_id": "EFO:0001266",
+          "term_label": "male"
+        }
+      ],
+      "negated_ontology_terms": [],
+      "scope": null
+    },
+    {
+      "description": "organism part",
+      "ontology_terms": [
+        {
+          "term_id": "UBERON:0002349",
+          "term_label": "cardiac muscle"
+        }
+      ],
+      "negated_ontology_terms": [],
+      "scope": null
+    },
+    {
+      "description": "race",
+      "ontology_terms": [
+        {
+          "term_id": "EFO:0003152",
+          "term_label": "Asian"
+        }
+      ],
+      "negated_ontology_terms": [],
+      "scope": null
+    }
+  ],
+  "attributes": {
+    "released": {
+      "values": [
+        {
+          "string_value": "2014-07-01"
+        }
+      ]
+    },
+    "updated": {
+      "values": [
+        {
+          "string_value": "2018-04-04"
+        }
+      ]
+    },
+    "domain": {
+      "values": [
+        {
+          "string_value": "self.BioSamplesMigration"
+        }
+      ]
+    },
+    "Sample source name": {
+      "values": [
+        {
+          "string_value": "advanced heart failure-ICM-serum-at LVAD explantation for heart transplantation"
+        }
+      ]
+    },
+    "Sample title": {
+      "values": [
+        {
+          "string_value": "CTL03_LVntr_1"
+        }
+      ]
+    },
+    "lvad status": {
+      "values": [
+        {
+          "string_value": "No LVAD"
+        }
+      ]
+    },
+    "sample id": {
+      "values": [
+        {
+          "string_value": "CTL03"
+        }
+      ]
+    },
+    "secondary description": {
+      "values": [
+        {
+          "string_value": "Sample name: ICM17_SRexp_1 Processed data circulation_clusters.txt Processed data circulation_seqfams.txt Processed data circulation_unique.txt Library: 7 barcode: TAGGA common 3'-adapter: TCGTATGCCGTCTTCTGCTTG complete 3'-adapter: TAGGATCGTATGCCGTCTTCTGCTTG"
+        }
+      ]
+    },
+    "externalReferences": {
+      "values": [
+        {
+          "url": {
+            "values": [
+              {
+                "string_values": "http://www.ebi.ac.uk/ena/data/view/SAMN02437723"
+              }
+            ]
+          }
+        },
+        {
+          "url": {
+            "values": [
+              {
+                "string_values": "http://www.ebi.ac.uk/ena/data/view/SRS512248"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "organization": {
+      "values": [
+        {
+          "Name": {
+            "values": [
+              {
+                "string_values": "The Rockefeller University"
+              }
+            ]
+          }
+        },
+        {
+          "Role": {
+            "values": [
+              {
+                "string_values": "submitter "
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "contact": {
+      "values": [
+        {
+          "Name": {
+            "values": [
+              {
+                "string_values": "Kemal Akat"
+              }
+            ]
+          }
+        },
+        {
+          "Name": {
+            "values": [
+              {
+                "string_values": "Paul Schulze"
+              }
+            ]
+          }
+        },
+        {
+          "Name": {
+            "values": [
+              {
+                "string_values": "Thomas Tuschl"
+              }
+            ]
+          }
+        }
+      ]
+    }
+  },
+  "external_identifiers": [
+    {
+      "identifier": "SAMEG180498",
+      "relation": "has member"
+    }
+  ],
+  "individual_age_at_collection": {
+    "age": "40",
+    "age_class": null
+  },
+  "location": {}
+}

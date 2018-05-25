@@ -1,0 +1,207 @@
+{
+  "id": "SAMEA2672955",
+  "name": "ERS513890",
+  "dataset_id": null,
+  "individual_id": null,
+  "description": null,
+  "bio_characteristics": [
+    {
+      "description": "Organism",
+      "ontology_terms": [
+        {
+          "term_id": "NCBITaxon:9606",
+          "term_label": "Homo sapiens"
+        }
+      ],
+      "negated_ontology_terms": [],
+      "scope": null
+    },
+    {
+      "description": "environment (material)",
+      "ontology_terms": [
+        {
+          "term_id": "BTO:0001202",
+          "term_label": "Saliva"
+        }
+      ],
+      "negated_ontology_terms": [],
+      "scope": null
+    },
+    {
+      "description": "host body product",
+      "ontology_terms": [
+        {
+          "term_id": "BTO:0001202",
+          "term_label": "Saliva"
+        }
+      ],
+      "negated_ontology_terms": [],
+      "scope": null
+    },
+    {
+      "description": "host sex",
+      "ontology_terms": [
+        {
+          "term_id": "PATO:0000383",
+          "term_label": "female"
+        }
+      ],
+      "negated_ontology_terms": [],
+      "scope": null
+    }
+  ],
+  "attributes": {
+    "released": {
+      "values": [
+        {
+          "string_value": "2016-10-21"
+        }
+      ]
+    },
+    "updated": {
+      "values": [
+        {
+          "string_value": "2018-01-20"
+        }
+      ]
+    },
+    "domain": {
+      "values": [
+        {
+          "string_value": "self.BioSamplesMigration"
+        }
+      ]
+    },
+    "Couple Id": {
+      "values": [
+        {
+          "string_value": "Couple 1"
+        }
+      ]
+    },
+    "Donor/Acceptor": {
+      "values": [
+        {
+          "string_value": "A"
+        }
+      ]
+    },
+    "Reported Kissing with partner Frequency": {
+      "values": [
+        {
+          "string_value": "1/day"
+        }
+      ]
+    },
+    "Sampling time point": {
+      "values": [
+        {
+          "string_value": "4"
+        }
+      ]
+    },
+    "Time since last intimate kissing with partner": {
+      "values": [
+        {
+          "string_value": "6hour"
+        }
+      ]
+    },
+    "colection date": {
+      "values": [
+        {
+          "string_value": "2012-07-01T12:00:00"
+        }
+      ]
+    },
+    "environment (biome)": {
+      "values": [
+        {
+          "string_value": "Human associated"
+        }
+      ]
+    },
+    "environment (feature)": {
+      "values": [
+        {
+          "string_value": "Mouth"
+        }
+      ]
+    },
+    "host-associated environmental package": {
+      "values": [
+        {
+          "string_value": "host-associated"
+        }
+      ]
+    },
+    "investigation type": {
+      "values": [
+        {
+          "string_value": "mimarks-survey"
+        }
+      ]
+    },
+    "project name": {
+      "values": [
+        {
+          "string_value": "Shaping the oral microbiota by intimate kissing"
+        }
+      ]
+    },
+    "sequencing method": {
+      "values": [
+        {
+          "string_value": "MiSeq Illumina"
+        }
+      ]
+    },
+    "synonym": {
+      "values": [
+        {
+          "string_value": "Oral-Microbiota22"
+        }
+      ]
+    },
+    "externalReferences": {
+      "values": [
+        {
+          "url": {
+            "values": [
+              {
+                "string_values": "http://www.ebi.ac.uk/ena/data/view/ERS513890"
+              }
+            ]
+          }
+        },
+        {
+          "url": {
+            "values": [
+              {
+                "string_values": "http://www.ebi.ac.uk/ena/data/view/SAMEA2672955"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "organization": {
+      "values": []
+    },
+    "contact": {
+      "values": []
+    }
+  },
+  "external_identifiers": [],
+  "individual_age_at_collection": {
+    "age": "40",
+    "age_class": null
+  },
+  "location": {
+    "label": "Netherlands",
+    "precision": null,
+    "latitude": 52.366091,
+    "longtitude": 4.916525,
+    "altitude": 0
+  }
+}
