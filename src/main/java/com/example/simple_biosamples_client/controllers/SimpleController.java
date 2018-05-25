@@ -7,11 +7,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.hateoas.Resource;
 import org.springframework.web.bind.annotation.*;
-import uk.ac.ebi.biosamples.model.Attribute;
 import uk.ac.ebi.biosamples.model.Sample;
 
 import java.util.List;
-import java.util.SortedSet;
 
 @RestController
 @EnableAutoConfiguration
@@ -28,7 +26,7 @@ public class SimpleController {
     @RequestMapping(value="/getSample/{sampleID}", method=RequestMethod.GET)
     Sample getSample(@PathVariable String sampleID) {
         Sample biosample = accessPoint.getSample(sampleID);
-        SortedSet<Attribute> c = biosample.getCharacteristics();
+        String c = biosample.getCharacteristics().first().getIriOls();
         Biosample biosample1 = toGA4GHMapper.mapSampleToGA4GH(biosample);
         return biosample;
     }

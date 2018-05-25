@@ -3,6 +3,7 @@ package com.example.simple_biosamples_client.services;
 import com.example.simple_biosamples_client.models.ga4ghmetadata.*;
 import com.example.simple_biosamples_client.services.utils.GeoLocationDataHelper;
 import com.example.simple_biosamples_client.services.utils.Location;
+import com.example.simple_biosamples_client.services.utils.OLSDataRetriever;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import uk.ac.ebi.biosamples.model.Attribute;
@@ -33,11 +34,6 @@ public class BiosampleToGA4GHMapper {
         mapRelationsihps(rawSample);
         mapRemainingData(rawSample);
         return ga4ghSample;
-    }
-
-    private void mapAttributesToGA4GH(Sample rawSample) {
-
-
     }
 
     private void mapCharacteristics(Sample rawSample) {
@@ -134,8 +130,16 @@ public class BiosampleToGA4GHMapper {
         }
     }
 
-    private void mapBioCharacteristics(List<Attribute> bioCharacteristics) {
-
+    private void mapBioCharacteristics(List<Attribute> characteristics) {
+        SortedSet<Biocharacteristics> biocharacteristics = new TreeSet<>();
+        for (Attribute attribute : characteristics) {
+            Biocharacteristics biocharacteristic = new Biocharacteristics();
+            biocharacteristic.setDescription(attribute.getType());
+            biocharacteristic.setScope(attribute.getUnit());
+            biocharacteristic.setOntology_terms(getSetOfontologyTerms(attribute.getIri()));
+            biocharacteristics.add(biocharacteristic);
+        }
+        ga4ghSample.setBio_characteristic(biocharacteristics);
 
     }
 
@@ -144,8 +148,9 @@ public class BiosampleToGA4GHMapper {
         ga4ghSample.addSingleAttributeValue("updated", rawSample.getUpdateDate());
         ga4ghSample.addSingleAttributeValue("domain", rawSample.getDomain());
         ga4ghSample.addAttributeList("contacts", convertObjectsToAttributeValues(rawSample.getContacts()));
-
-
+        ga4ghSample.addAttributeList("external_references", convertObjectsToAttributeValues(rawSample.getExternalReferences()));
+        ga4ghSample.addAttributeList("organizations", convertObjectsToAttributeValues(rawSample.getOrganizations()));
+        ga4ghSample.addAttributeList("publications", convertObjectsToAttributeValues(rawSample.getPublications()));
     }
     private OntologyTerm getOntologyTerm(Attribute attribute) {
         OntologyTerm term = new OntologyTerm();
@@ -153,6 +158,19 @@ public class BiosampleToGA4GHMapper {
         term.setTerm_id(attribute.getIriOls());
         //TODO term id
         return term;
+    }
+
+    private SortedSet<OntologyTerm> getSetOfontologyTerms(SortedSet<String> iri) {
+        SortedSet<OntologyTerm> terms = new TreeSet<>();
+        OLSDataRetriever retriever = new OLSDataRetriever();
+        for (String link : iri) {
+            OntologyTerm term = new OntologyTerm();
+            retriever.readJsonFromUrl(link);
+            term.setTerm_id(retriever.StringGetOntologyTermId());
+            term.setTerm_label(retriever.StringGetOntologyTermLabel());
+            terms.add(term);
+        }
+        return terms;
     }
 
     private List<AttributeValue> convertObjectsToAttributeValues(SortedSet values) {
