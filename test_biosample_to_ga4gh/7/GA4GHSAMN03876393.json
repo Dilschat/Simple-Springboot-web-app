@@ -1,0 +1,139 @@
+{
+  "id": "SAMN03876393",
+  "name": "Human sample from Homo sapiens",
+  "dataset_id": null,
+  "individual_id": null,
+  "description": null,
+  "bio_characteristics": [
+    {
+      "description": "Organism",
+      "ontology_terms": [
+        {
+          "term_id": "NCBITaxon:9606",
+          "term_label": "Homo sapiens"
+        }
+      ],
+      "negated_ontology_terms": [],
+      "scope": null
+    },
+    {
+      "description": "Sex",
+      "ontology_terms": [
+        {
+          "term_id": "EFO:0001265",
+          "term_label": "female"
+        }
+      ],
+      "negated_ontology_terms": [],
+      "scope": null
+    },
+    {
+      "description": "organism part",
+      "ontology_terms": [
+        {
+          "term_id": "BTO:0001202",
+          "term_label": "saliva"
+        }
+      ],
+      "negated_ontology_terms": [],
+      "scope": null
+    }
+  ],
+  "attributes": {
+    "released": {
+      "values": [
+        {
+          "string_value": "2015-08-17"
+        }
+      ]
+    },
+    "updated": {
+      "values": [
+        {
+          "string_value": "2018-01-21"
+        }
+      ]
+    },
+    "domain": {
+      "values": [
+        {
+          "string_value": "self.BioSamplesMigration"
+        }
+      ]
+    },
+    "biomaterial provider": {
+      "values": [
+        {
+          "string_value": "Hospital"
+        }
+      ]
+    },
+    "isolate": {
+      "values": [
+        {
+          "string_value": "MD_CHW_AAY_21263"
+        }
+      ]
+    },
+    "gestational weeks": {
+      "values": [
+        {
+          "string_value": "18"
+        }
+      ]
+    },
+    "isolate": {
+      "values": [
+        {
+          "string_value": "pregnant woman"
+        }
+      ]
+    },
+    "model": {
+      "values": [
+        {
+          "string_value": "Human"
+        }
+      ]
+    },
+    "package": {
+      "values": [
+        {
+          "string_value": "Human.1.0"
+        }
+      ]
+    },
+    "synonym": {
+      "values": [
+        {
+          "string_value": "MD_CHW_AAY_21263"
+        }
+      ]
+    },
+    "externalReferences": {
+      "values": [
+        {
+          "url": {
+            "values": [
+              {
+                "string_values": "http://www.ebi.ac.uk/ena/data/view/SAMN03876393"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "organization": {
+      "values": []
+    },
+    "contact": {
+      "values": []
+    }
+  },
+  "external_identifiers": [],
+  "individual_age_at_collection": {
+    "age": "38",
+    "age_class": null
+  },
+  "location": {}
+}

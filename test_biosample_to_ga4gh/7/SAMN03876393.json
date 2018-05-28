@@ -1,0 +1,60 @@
+{
+  "name" : "Human sample from Homo sapiens",
+  "accession" : "SAMN03876393",
+  "domain" : "self.BioSamplesMigration",
+  "release" : "2015-08-17T23:00:00Z",
+  "update" : "2018-01-21T07:40:22.688Z",
+  "characteristics" : {
+    "Organism" : [ {
+      "text" : "Homo sapiens",
+      "ontologyTerms" : [ "http://purl.obolibrary.org/obo/NCBITaxon_9606" ]
+    } ],
+    "Sex" : [ {
+      "text" : "female",
+      "ontologyTerms" : [ "http://www.ebi.ac.uk/efo/EFO_0001265" ]
+    } ],
+    "age" : [ {
+      "text" : "38"
+    } ],
+    "biomaterial provider" : [ {
+      "text" : "Hospital"
+    } ],
+    "isolate" : [ {
+      "text" : "MD_CHW_AAY_21263"
+    } ],
+    "model" : [ {
+      "text" : "Human"
+    } ],
+    "organism part" : [ {
+      "text" : "saliva",
+      "ontologyTerms" : [ "http://purl.obolibrary.org/obo/BTO_0001202" ]
+    } ],
+    "package" : [ {
+      "text" : "Human.1.0"
+    } ],
+    "synonym" : [ {
+      "text" : "MD_CHW_AAY_21263"
+    } ]
+  },
+  "externalReferences" : [ {
+    "url" : "http://www.ebi.ac.uk/ena/data/view/SAMN03876393"
+  } ],
+  "releaseDate" : "2015-08-17",
+  "updateDate" : "2018-01-21",
+  "_links" : {
+    "self" : {
+      "href" : "https://www.ebi.ac.uk/biosamples/samples/SAMN03876393"
+    },
+    "curationDomain" : {
+      "href" : "https://www.ebi.ac.uk/biosamples/samples/SAMN03876393{?curationdomain}",
+      "templated" : true
+    },
+    "curationLinks" : {
+      "href" : "https://www.ebi.ac.uk/biosamples/samples/SAMN03876393/curationlinks"
+    },
+    "curationLink" : {
+      "href" : "https://www.ebi.ac.uk/biosamples/samples/SAMN03876393/curationlinks/{hash}",
+      "templated" : true
+    }
+  }
+}
