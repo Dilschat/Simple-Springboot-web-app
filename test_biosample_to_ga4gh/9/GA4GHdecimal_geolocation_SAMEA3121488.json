@@ -1,0 +1,47 @@
+{
+  "id": "SAMEA3121488",
+  "name": "ERS605638",
+  "dataset_id": null,
+  "individual_id": null,
+  "description": null,
+  "bio_characteristics": [  ],
+  "attributes": {
+    "released": {
+      "values": [
+        {
+          "string_value": "2016-02-16"
+        }
+      ]
+    },
+    "updated": {
+      "values": [
+        {
+          "string_value": "2018-02-12"
+        }
+      ]
+    },
+    "domain": {
+      "values": [
+        {
+          "string_value": "self.BioSamplesMigration"
+        }
+      ]
+    }
+    },
+    "organization": {
+      "values": []
+    },
+    "contact": {
+      "values": []
+    }
+  },
+  "external_identifiers": [],
+  "individual_age_at_collection": {},
+  "location": {
+    "label": null,
+    "precision": null,
+    "latitude": 6.42375,
+    "longtitude": -66.58973,
+    "altitude": 0
+  }
+}

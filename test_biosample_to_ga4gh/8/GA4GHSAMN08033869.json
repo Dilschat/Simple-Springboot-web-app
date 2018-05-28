@@ -1,0 +1,146 @@
+{
+  "id": "SAMN08033869",
+  "name": "C0743T26016100004_Week 7",
+  "dataset_id": null,
+  "individual_id": null,
+  "description": null,
+  "bio_characteristics": [
+    {
+      "description": "Organism",
+      "ontology_terms": [
+        {
+          "term_id": "NCBITaxon:9606",
+          "term_label": "Homo sapiens"
+        }
+      ],
+      "negated_ontology_terms": [],
+      "scope": null
+    },
+    {
+      "description": "Sex",
+      "ontology_terms": [
+        {
+          "term_id": "PATO:0000383",
+          "term_label": "female"
+        }
+      ],
+      "negated_ontology_terms": [],
+      "scope": null
+    },
+    {
+      "description": "environment biome",
+      "ontology_terms": [
+        {
+          "term_id": "UBERON:0000160",
+          "term_label": "intestine"
+        }
+      ],
+      "negated_ontology_terms": [],
+      "scope": null
+    }
+  ],
+  "attributes": {
+    "released": {
+      "values": [
+        {
+          "string_value": "2017-11-17"
+        }
+      ]
+    },
+    "updated": {
+      "values": [
+        {
+          "string_value": "2018-01-20"
+        }
+      ]
+    },
+    "domain": {
+      "values": [
+        {
+          "string_value": "self.BioSamplesMigration"
+        }
+      ]
+    },
+    "biomaterial provider": {
+      "values": [
+        {
+          "string_value": "Janssen Pharmaceutical Companies of Johnson & Johnson"
+        }
+      ]
+    },
+    "isolate": {
+      "values": [
+        {
+          "string_value": "C0743T26016100004_Week 7"
+        }
+      ]
+    },
+    "model": {
+      "values": [
+        {
+          "string_value": "Human"
+        }
+      ]
+    },
+    "organism part": {
+      "values": [
+        {
+          "string_value": "feces"
+        }
+      ]
+    },
+    "package": {
+      "values": [
+        {
+          "string_value": "Human.1.0"
+        }
+      ]
+    },
+    "synonym": {
+      "values": [
+        {
+          "string_value": "A7893421-6"
+        }
+      ]
+    },
+    "visit": {
+      "values": [
+        {
+          "string_value": "Week 6"
+        }
+      ]
+    },
+    "USUBJID": {
+      "values": [
+        {
+          "string_value": "C0743T26016100004"
+        }
+      ]
+    },
+    "externalReferences": {
+      "values": [
+        {
+          "url": {
+            "values": [
+              {
+                "string_values": "http://www.ebi.ac.uk/ena/data/view/SAMN08033869"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "organization": {
+      "values": []
+    },
+    "contact": {
+      "values": []
+    }
+  },
+  "external_identifiers": [],
+  "individual_age_at_collection": {
+    "age": "29",
+    "age_class": null
+  },
+  "location": {}
+}
