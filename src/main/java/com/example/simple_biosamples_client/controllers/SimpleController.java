@@ -23,9 +23,9 @@ public class SimpleController {
         this.accessPoint = biosamplesAccessPoint;
     }
 
-    @RequestMapping(value="/getSample/{sampleID}", method=RequestMethod.GET)
+    @RequestMapping(value = "/getSampleById/{sampleID}", method = RequestMethod.GET)
     Sample getSample(@PathVariable String sampleID) {
-        Sample biosample = accessPoint.getSample(sampleID);
+        Sample biosample = accessPoint.getSampleById(sampleID);
         String c = biosample.getCharacteristics().first().getIriOls();
         Biosample biosample1 = toGA4GHMapper.mapSampleToGA4GH(biosample);
         return biosample;

@@ -2,7 +2,7 @@ package com.example.simple_biosamples_client.models.ga4ghmetadata;
 
 import java.util.SortedSet;
 
-public class Biocharacteristics {
+public class Biocharacteristics implements Comparable {
 
     private String description;
     private SortedSet<OntologyTerm> ontology_terms;
@@ -42,4 +42,8 @@ public class Biocharacteristics {
     }
 
 
+    @Override
+    public int compareTo(Object o) {
+        return this.getDescription().compareTo(((Biocharacteristics) o).getDescription());
+    }
 }

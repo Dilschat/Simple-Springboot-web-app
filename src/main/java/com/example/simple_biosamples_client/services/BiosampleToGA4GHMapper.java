@@ -56,10 +56,10 @@ public class BiosampleToGA4GHMapper {
             } else if (type.equals("description")) {
                 ga4ghSample.setDescription(attribute.getValue());
             } else {
-                if (attribute.getValue() != null && attribute.getIri() != null) {
-                    attributes.add(attribute);
-                } else {
+                if (attribute.getValue() != null && attribute.getIriOls() != null) {
                     bioCharacteristics.add(attribute);
+                } else {
+                    attributes.add(attribute);
                 }
             }
 
@@ -173,9 +173,9 @@ public class BiosampleToGA4GHMapper {
         return terms;
     }
 
-    private List<AttributeValue> convertObjectsToAttributeValues(SortedSet values) {
+    private <T> List<AttributeValue> convertObjectsToAttributeValues(SortedSet<T> values) {
         List<AttributeValue> attributes = new ArrayList<>();
-        for (Object value : values) {
+        for (T value : values) {
             AttributeValue attributeValue = new AttributeValue(value);
             attributes.add(attributeValue);
         }

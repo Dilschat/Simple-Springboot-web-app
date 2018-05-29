@@ -29,23 +29,24 @@ public class OLSDataRetriever {
         ObjectMapper mapper = new ObjectMapper();
         try {
             JsonNode node = mapper.readTree(urlToTerm);
+            this.node = node;
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
 
-        this.node = node;
+
     }
 
     public String StringGetOntologyTermId() {
-        JsonNode terms = node.get("terms");
-        JsonNode term = node.get(0);
-        return term.get("obo_id").asText();
+        JsonNode terms = node.get("_embedded").get("terms");
+        terms = terms.get(0);
+        return terms.get("obo_id").asText();
     }
 
     public String StringGetOntologyTermLabel() {
-        JsonNode terms = node.get("terms");
-        JsonNode term = node.get(0);
-        return term.get("label").asText();
+        JsonNode terms = node.get("_embedded").get("terms");
+        terms = terms.get(0);
+        return terms.get("label").asText();
     }
 
 }

@@ -1,5 +1,9 @@
 package com.example.simple_biosamples_client.models.ga4ghmetadata;
 
+import uk.ac.ebi.biosamples.model.Contact;
+import uk.ac.ebi.biosamples.model.Organization;
+import uk.ac.ebi.biosamples.model.Publication;
+
 import java.util.List;
 
 public class AttributeValue {
@@ -8,7 +12,7 @@ public class AttributeValue {
     private Object value;
 
     public AttributeValue(Object value) {
-        if (value instanceof String) {
+        if (value instanceof String || value instanceof Contact || value instanceof Organization || value instanceof Publication) {
             type = "string_value";
             this.value = value;
         } else if (value instanceof Long) {
@@ -34,7 +38,6 @@ public class AttributeValue {
             this.value = value;
         } else if (value == null) {
             type = "null_value";
-            this.value = value;
         } else if (value instanceof Attributes) {
             type = "attributes";
             this.value = value;

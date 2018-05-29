@@ -1,6 +1,6 @@
 package com.example.simple_biosamples_client.models.ga4ghmetadata;
 
-public class OntologyTerm {
+public class OntologyTerm implements Comparable {
     private String term_id;
     private String term_label;
 
@@ -18,5 +18,10 @@ public class OntologyTerm {
 
     public void setTerm_label(String term_label) {
         this.term_label = term_label;
+    }
+
+    @Override
+    public int compareTo(Object o) {
+        return this.getTerm_label().compareTo(((OntologyTerm) o).getTerm_label());
     }
 }

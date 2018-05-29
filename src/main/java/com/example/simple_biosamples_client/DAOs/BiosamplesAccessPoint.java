@@ -27,7 +27,7 @@ public class BiosamplesAccessPoint {
         this.filterCreator = filterCreator;
     }
 
-    public Sample getSample(String sampleID) throws NoSuchElementException {
+    public Sample getSampleById(String sampleID) throws NoSuchElementException {
         Optional<Resource<Sample>> optionalResource = client.fetchSampleResource(sampleID);
         Resource<Sample> sampleResource = optionalResource.get();
         return sampleResource.getContent();
