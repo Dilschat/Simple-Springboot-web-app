@@ -1,0 +1,87 @@
+{
+   "id":"SAMEA3913876",
+   "name":"ERS1101010",
+   "dataset_id":null,
+   "individual_id":null,
+   "description":"Tumour sample before treatment",
+   "bio_characteristics":[
+      {
+         "description":"Organism",
+         "ontology_terms":[
+            {
+               "term_id":"NCBITaxon:9606",
+               "term_label":"Homo sapiens"
+            }
+         ],
+         "negated_ontology_terms":[
+
+         ],
+         "scope":null
+      }
+   ],
+   "attributes":{
+      "released":{
+         "values":[
+            {
+               "string_value":"2016-10-04"
+            }
+         ]
+      },
+      "updated":{
+         "values":[
+            {
+               "string_value":"2018-01-21"
+            }
+         ]
+      },
+      "domain":{
+         "values":[
+            {
+               "string_value":"self.BioSamplesMigration"
+            }
+         ]
+      },
+      "synonym":{
+         "values":[
+            {
+               "string_value":"WTCHG_54056_06"
+            }
+         ]
+      },
+      "externalReferences":{
+         "values":[
+            {
+               "url":{
+                  "values":[
+                     {
+                        "string_values":"http://www.ebi.ac.uk/ena/data/view/ERS1101010"
+                     },
+                     {
+                        "string_values":"http://www.ebi.ac.uk/ena/data/view/SAMEA3913876"
+                     }
+                  ]
+               }
+            }
+         ]
+      },
+      "organization":{
+         "values":[
+
+         ]
+      },
+      "contact":{
+         "values":[
+
+         ]
+      }
+   },
+   "external_identifiers":[
+
+   ],
+   "individual_age_at_collection":{
+
+   },
+   "location":{
+
+   }
+}

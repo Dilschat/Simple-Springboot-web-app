@@ -1,0 +1,119 @@
+{
+  "id": "SAMN07666496",
+  "name": "RNAseq Koptk1-sgRNA2",
+  "dataset_id": null,
+  "individual_id": null,
+  "description": null,
+  "bio_characteristics": [
+    {
+      "description": "Organism",
+      "ontology_terms": [
+        {
+          "term_id": "NCBITaxon:9606",
+          "term_label": "Homo sapiens"
+        }
+      ],
+      "negated_ontology_terms": [],
+      "scope": null
+    },
+    {
+      "description": "cell line",
+      "ontology_terms": [
+        {
+          "term_id": "EFO:0006283",
+          "term_label": "Koptk1"
+        }
+      ],
+      "negated_ontology_terms": [],
+      "scope": null
+    },
+    {
+      "description": "cell type",
+      "ontology_terms": [
+        {
+          "term_id": "EFO:0005592",
+          "term_label": "T cell leukemia"
+        }
+      ],
+      "negated_ontology_terms": [],
+      "scope": null
+    },
+    {
+      "description": "source name",
+      "ontology_terms": [
+        {
+          "term_id": "EFO:0005592",
+          "term_label": "T cell leukemia"
+        }
+      ],
+      "negated_ontology_terms": [],
+      "scope": null
+    }
+  ],
+  "attributes": {
+    "released": {
+      "values": [
+        {
+          "string_value": "2017-09-20"
+        }
+      ]
+    },
+    "updated": {
+      "values": [
+        {
+          "string_value": "2018-01-20"
+        }
+      ]
+    },
+    "domain": {
+      "values": [
+        {
+          "string_value": "self.BioSamplesMigration"
+        }
+      ]
+    },
+    "model": {
+      "values": [
+        {
+          "string_value": "Generic"
+        }
+      ]
+    },
+    "package": {
+      "values": [
+        {
+          "string_value": "Generic.1.0"
+        }
+      ]
+    },
+    "synonym": {
+      "values": [
+        {
+          "string_value": "SRS2525237"
+        }
+      ]
+    },
+    "externalReferences": {
+      "values": [
+        {
+          "url": {
+            "values": [
+              {
+                "string_values": "http://www.ebi.ac.uk/ena/data/view/SAMN07666496"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "organization": {
+      "values": []
+    },
+    "contact": {
+      "values": []
+    }
+  },
+  "external_identifiers": [],
+  "individual_age_at_collection": {},
+  "location": {}
+}

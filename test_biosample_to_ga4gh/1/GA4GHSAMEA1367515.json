@@ -1,0 +1,319 @@
+{
+	"id" : "SAMEA1367515",
+	"name" : "source GSM882511 1",
+	"dataset_id" : null,
+	"individual_id" : null,
+	"description" : null,
+	"bio_characteristics" :  [
+		{
+			"description" : "Organism",
+			 "ontology_terms" : [
+			 	{
+			 		"term_id" : "NCBITaxon:9606",
+			 		"term_label": "Homo sapiens"
+			 	}
+			 ],
+			 "negated_ontology_terms" : [],
+			 "scope" : null
+
+		},
+		{
+			"description" : "Sex",
+			 "ontology_terms" : [
+			 	{
+			 		"term_id" : "EFO:0001266",
+			 		"term_label": "male"
+			 	}
+			 ],
+			 "negated_ontology_terms" : [],
+			 "scope" : null
+
+		},
+		{
+			"description" : "organism part",
+			 "ontology_terms" : [
+			 	{
+			 		"term_id" : "EFO:0000327",
+			 		"term_label": "cerebellum" 
+			 	}
+			 ],
+			 "negated_ontology_terms" : [],
+			 "scope" : null
+
+		}
+	],
+	
+	"attributes" : 
+		{
+			"released" : {
+				"values" : [
+					{
+						"string_value": "2012-05-07T23:00:00Z"
+					}	
+
+				]
+			},  
+			"updated" : {
+				"values" : [
+					{
+						"string_value": "2018-04-04T15:24:27.332Z"
+					}	
+
+				]
+			},
+			"domain" : {
+				"values" : [
+					{
+						"string_value": "self.BioSamplesMigration"
+					}	
+
+				]
+			},
+			"Sample_source_name" : {
+				"values" : [
+					{
+						"string_value": "Human Brain Tissue: CRBLM"
+					}	
+
+				]
+			},
+			"Sample_title" : {
+				"values" : [
+					{
+						"string_value": "UMARY-1652-CRBLM"
+					}	
+
+				]
+			},    
+			"batch" : {
+				"values" : [
+					{
+						"string_value": "D"
+					}	
+
+				]
+			},  
+			"pmi (hr)" : {
+				"values" : [
+					{
+						"string_value": "21"
+					}	
+
+				]
+			},
+			"tissuebank" : {
+				"values" : [
+					{
+						"string_value": "UMARY"
+					}	
+
+				]
+			},  
+			"organization" : {
+				"values" : [
+					{
+						"string_value": "UMARY"
+					}	
+
+				]
+			},
+			"contact" : {
+				"values" : [
+					{
+						"Name":{
+							"values" : [
+								{
+								"string_value" : "Adaikalavan Ramasamy"
+								}
+							]
+						},
+						"Name":{
+							"values" : [
+								{
+								"string_value" : "Alan Zonderman"
+								}
+							]
+						},
+						"Name":{
+							"values" : [
+								{
+								"string_value" : "Allisa Dillman"
+								}
+							]
+						},
+						"Name":{
+							"values" : [
+								{
+								"string_value" : "Andrew Singleton"
+								}
+							]
+						},
+						"Name":{
+							"values" : [
+								{
+								"string_value" : "Bryan Traynor"
+								}
+							]
+						},
+
+						"Name":{
+							"values" : [
+								{
+								"string_value" : "Colin Smith"
+								}
+							]
+						},
+
+						"Name":{
+							"values" : [
+								{
+								"string_value" : "Dan Longo"
+								}
+							]
+						},
+
+						"Name":{
+							"values" : [
+								{
+								"string_value" : "Daniah Trabzuni"
+								}
+							]
+						},
+						"Name":{
+							"values" : [
+								{
+								"string_value" : "Dena Hernandez"
+								}
+							]
+						},
+						"Name":{
+							"values" : [
+								{
+								"string_value" : "H Zielke"
+								}
+							]
+						},
+						"Name":{
+							"values" : [
+								{
+								"string_value" : "J Raphael Gibbs"
+								}
+							]
+						},
+						"Name":{
+							"values" : [
+								{
+								"string_value" : "Jesse Gibbs"
+								}
+							]
+						},
+						"Name":{
+							"values" : [
+								{
+								"string_value" : "John Hardy"
+								}
+							]
+						},
+						"Name":{
+							"values" : [
+								{
+								"string_value" : "Juan Troncoso"
+								}
+							]
+						},
+						"Name":{
+							"values" : [
+								{
+								"string_value" : "Luigi Ferrucci"
+								}
+							]
+						},
+						"Name":{
+							"values" : [
+								{
+								"string_value" : "Marcel van der Brug"
+								}
+							]
+						},
+						"Name":{
+							"values" : [
+								{
+								"string_value" : "Mark Cookson"
+								}
+							]
+						},
+						"Name":{
+							"values" : [
+								{
+								"string_value" : "Michael Nalls"
+								}
+							]
+						},
+						"Name":{
+							"values" : [
+								{
+								"string_value" : "Mike Weale"
+								}
+							]
+						},
+						"Name":{
+							"values" : [
+								{
+								"string_value" : "Mina Ryten"
+								}
+							]
+						},
+						"Name":{
+							"values" : [
+								{
+								"string_value" : "Richard O'Brien"
+								}
+							]
+						},
+						"Name":{
+							"values" : [
+								{
+								"string_value" : "Robert Johnson"
+								}
+							]
+						},
+						"Name":{
+							"values" : [
+								{
+								"string_value" : "Robert Walker"
+								}
+							]
+						},
+						"Name":{
+							"values" : [
+								{
+								"string_value" : "Sampath Arepalli"
+								}
+							]
+						},
+
+					},	
+
+				]
+			} 
+		}
+	},
+	
+
+	"external_identifiers" : [
+		{
+			"identifier" : "SAMEG84929",
+			"relation" : "has member" 
+		},
+	], 
+	"individual_age_at_collection" : {
+		"age" : "19",
+		"age_class" : null
+	},
+	"location" : {} 
+
+
+
+
+
+}

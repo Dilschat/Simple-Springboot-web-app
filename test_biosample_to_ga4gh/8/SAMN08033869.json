@@ -1,0 +1,72 @@
+{
+  "name" : "C0743T26016100004_Week 7",
+  "accession" : "SAMN08033869",
+  "domain" : "self.BioSamplesMigration",
+  "release" : "2017-11-17T00:00:00Z",
+  "update" : "2018-01-20T12:04:22.220Z",
+  "characteristics" : {
+    "Organism" : [ {
+      "text" : "Homo sapiens",
+      "ontologyTerms" : [ "http://purl.obolibrary.org/obo/NCBITaxon_9606" ]
+    } ],
+    "Sex" : [ {
+      "text" : "female",
+      "ontologyTerms" : [ "http://purl.obolibrary.org/obo/PATO_0000383" ]
+    } ],
+    "USUBJID" : [ {
+      "text" : "C0743T26016100004"
+    } ],
+    "age" : [ {
+      "text" : "29"
+    } ],
+    "biomaterial provider" : [ {
+      "text" : "Janssen Pharmaceutical Companies of Johnson & Johnson"
+    } ],
+    "environment biome" : [ {
+      "text" : "intestine",
+      "ontologyTerms" : [ "http://purl.obolibrary.org/obo/UBERON_0000160" ]
+    } ],
+    "isolate" : [ {
+      "text" : "C0743T26016100004_Week 7"
+    } ],
+    "model" : [ {
+      "text" : "Human"
+    } ],
+    "organism part" : [ {
+      "text" : "feces"
+    } ],
+    "package" : [ {
+      "text" : "Human.1.0"
+    } ],
+    "seq methods" : [ {
+      "text" : "MoBio Powersoil, Illumimissing MiSeq"
+    } ],
+    "synonym" : [ {
+      "text" : "A7893421-6"
+    } ],
+    "visit" : [ {
+      "text" : "Week 6"
+    } ]
+  },
+  "externalReferences" : [ {
+    "url" : "http://www.ebi.ac.uk/ena/data/view/SAMN08033869"
+  } ],
+  "releaseDate" : "2017-11-17",
+  "updateDate" : "2018-01-20",
+  "_links" : {
+    "self" : {
+      "href" : "https://www.ebi.ac.uk/biosamples/samples/SAMN08033869"
+    },
+    "curationDomain" : {
+      "href" : "https://www.ebi.ac.uk/biosamples/samples/SAMN08033869{?curationdomain}",
+      "templated" : true
+    },
+    "curationLinks" : {
+      "href" : "https://www.ebi.ac.uk/biosamples/samples/SAMN08033869/curationlinks"
+    },
+    "curationLink" : {
+      "href" : "https://www.ebi.ac.uk/biosamples/samples/SAMN08033869/curationlinks/{hash}",
+      "templated" : true
+    }
+  }
+}
