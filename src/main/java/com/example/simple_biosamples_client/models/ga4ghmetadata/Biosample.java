@@ -13,10 +13,10 @@ public class Biosample {
 
     private String id;
     private String dataset_id;
+    private String individual_id;
     private String name;
     private String description;
     private SortedSet<Biocharacteristics> bio_characteristic;
-    private String individual_id;
     private Attributes attributes;
     private SortedSet<ExternalIdentifier> external_identifiers;
     private Age individual_age_at_collection;

@@ -3,6 +3,7 @@ package com.example.simple_biosamples_client.controllers;
 import com.example.simple_biosamples_client.DAOs.BiosamplesAccessPoint;
 import com.example.simple_biosamples_client.models.ga4ghmetadata.Biosample;
 import com.example.simple_biosamples_client.services.BiosampleToGA4GHMapper;
+import com.google.gson.Gson;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.hateoas.Resource;
@@ -24,11 +25,12 @@ public class SimpleController {
     }
 
     @RequestMapping(value = "/getSampleById/{sampleID}", method = RequestMethod.GET)
-    Sample getSample(@PathVariable String sampleID) {
+    Biosample getSample(@PathVariable String sampleID) {
         Sample biosample = accessPoint.getSampleById(sampleID);
         String c = biosample.getCharacteristics().first().getIriOls();
         Biosample biosample1 = toGA4GHMapper.mapSampleToGA4GH(biosample);
-        return biosample;
+        Gson gson = new Gson();
+        return biosample1;
     }
 
     @RequestMapping("/search")

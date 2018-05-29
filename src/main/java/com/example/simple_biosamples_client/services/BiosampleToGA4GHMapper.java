@@ -15,20 +15,32 @@ import java.util.List;
 import java.util.SortedSet;
 import java.util.TreeSet;
 
+/**
+ * Biosamples format to GA4GH format data converter
+ *
+ * @author Dilshat Salikhov
+ */
+
 @Service
 public class BiosampleToGA4GHMapper {
 
     private Biosample ga4ghSample;
     private GeoLocationDataHelper locationHelper;
+
     @Autowired
     public BiosampleToGA4GHMapper(Biosample ga4ghSample, GeoLocationDataHelper helper) {
         this.ga4ghSample = ga4ghSample;
         this.locationHelper = helper;
     }
 
+    /**
+     * Converts sample in Biosamples format to sample in GA4GH format
+     *
+     * @param rawSample sample retrieved from Biosamples
+     * @return sample in GA4GH format
+     */
     public Biosample mapSampleToGA4GH(Sample rawSample) {
         ga4ghSample.setId(rawSample.getAccession());
-        ga4ghSample.setDataset_id(rawSample.getDomain());
         ga4ghSample.setName(rawSample.getName());
         mapCharacteristics(rawSample);
         mapRelationsihps(rawSample);
@@ -36,12 +48,17 @@ public class BiosampleToGA4GHMapper {
         return ga4ghSample;
     }
 
+    /**
+     * Maps characteristics from Biosamples sample to GA4GH sample. Sorts data to: biocharacteristics, attributes,
+     * geolocation info, age info,description, dataset_id.
+     *
+     * @param rawSample sample retrieved from Biosamples
+     */
     private void mapCharacteristics(Sample rawSample) {
         SortedSet<Attribute> characteristics = rawSample.getCharacteristics();
         SortedSet<Attribute> locationInfo = new TreeSet<>();
         List<Attribute> attributes = new ArrayList<>();
         List<Attribute> bioCharacteristics = new ArrayList<>();
-
         for (Attribute attribute : characteristics) {
             String type = attribute.getType();
             if (type.equals("age")) {
@@ -69,6 +86,12 @@ public class BiosampleToGA4GHMapper {
         mapBioCharacteristics(bioCharacteristics);
     }
 
+    /**
+     * Maps location data from biosamples to GA4GH GeoLocation.
+     *
+     * @param attributes geolocation data from biosample
+     * @see GeoLocation
+     */
     private void mapLocation(SortedSet<Attribute> attributes) {
         GeoLocation geoLocation = new GeoLocation();
         for (Attribute attribute : attributes) {
@@ -99,6 +122,13 @@ public class BiosampleToGA4GHMapper {
 
     }
 
+    /**
+     * Maps relationships from Biosamples to ExternalIdentifiers in GA4GH.
+     *
+     * @param rawSample sample retreived from Biosamples
+     * @see Relationship
+     * @see ExternalIdentifier
+     */
     private void mapRelationsihps(Sample rawSample) {
         SortedSet<ExternalIdentifier> externalIdentifiers = new TreeSet<>();
         for (Relationship relationship : rawSample.getRelationships()) {
@@ -114,6 +144,13 @@ public class BiosampleToGA4GHMapper {
         }
         ga4ghSample.setExternal_identifiers(externalIdentifiers);
     }
+
+    /**
+     * Maps age data from Biosamples to Age in GA4GH
+     *
+     * @param attribute attribute with age info from Biosamples
+     * @see Age
+     */
     private void mapAge(Attribute attribute) {
         Age age = new Age();
         age.setAge(attribute.getValue());
@@ -121,8 +158,14 @@ public class BiosampleToGA4GHMapper {
         ga4ghSample.setIndividual_age_at_collection(age);
     }
 
-    private void mapAttributes(List<Attribute> attributes) {
-        for (Attribute attribute : attributes) {
+    /**
+     * Maps characteristics from Biosamples to Attributes in GA4GH
+     *
+     * @param characteristics characteristics that provides nonbiological data (without Ontology term)
+     * @see Attributes
+     */
+    private void mapAttributes(List<Attribute> characteristics) {
+        for (Attribute attribute : characteristics) {
             ArrayList<AttributeValue> values = new ArrayList<>();
             AttributeValue value = new AttributeValue(attribute.getValue());
             values.add(value);
@@ -130,19 +173,31 @@ public class BiosampleToGA4GHMapper {
         }
     }
 
+    /**
+     * Maps characteristics from Biosamples to Biocharacteristics in GA4GH
+     *
+     * @param characteristics characteristics that provides biological data (with Ontology term)
+     * @see Attributes
+     */
     private void mapBioCharacteristics(List<Attribute> characteristics) {
         SortedSet<Biocharacteristics> biocharacteristics = new TreeSet<>();
         for (Attribute attribute : characteristics) {
             Biocharacteristics biocharacteristic = new Biocharacteristics();
             biocharacteristic.setDescription(attribute.getType());
             biocharacteristic.setScope(attribute.getUnit());
-            biocharacteristic.setOntology_terms(getSetOfontologyTerms(attribute.getIri()));
+            biocharacteristic.setOntology_terms(getOntologyTerms(attribute.getIri()));
             biocharacteristics.add(biocharacteristic);
         }
         ga4ghSample.setBio_characteristic(biocharacteristics);
 
     }
 
+    /**
+     * Maps data that is not presented in Biosamples characteristics, but represents GA4GH Attributes:
+     * contacts, released and updated dates, contacts, domain, external_references, organizations, publications.
+     *
+     * @param rawSample sample retreived from Biosamples
+     */
     private void mapRemainingData(Sample rawSample) {
         ga4ghSample.addSingleAttributeValue("released", rawSample.getReleaseDate());
         ga4ghSample.addSingleAttributeValue("updated", rawSample.getUpdateDate());
@@ -152,15 +207,17 @@ public class BiosampleToGA4GHMapper {
         ga4ghSample.addAttributeList("organizations", convertObjectsToAttributeValues(rawSample.getOrganizations()));
         ga4ghSample.addAttributeList("publications", convertObjectsToAttributeValues(rawSample.getPublications()));
     }
+
+
     private OntologyTerm getOntologyTerm(Attribute attribute) {
         OntologyTerm term = new OntologyTerm();
         term.setTerm_label(attribute.getValue());
         term.setTerm_id(attribute.getIriOls());
-        //TODO term id
         return term;
     }
 
-    private SortedSet<OntologyTerm> getSetOfontologyTerms(SortedSet<String> iri) {
+
+    private SortedSet<OntologyTerm> getOntologyTerms(SortedSet<String> iri) {
         SortedSet<OntologyTerm> terms = new TreeSet<>();
         OLSDataRetriever retriever = new OLSDataRetriever();
         for (String link : iri) {
@@ -182,7 +239,6 @@ public class BiosampleToGA4GHMapper {
         return attributes;
 
     }
-
 
 
 }

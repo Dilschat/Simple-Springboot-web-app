@@ -15,21 +15,20 @@ public class OLSDataRetriever {
     public void readJsonFromUrl(String iri) {
         String linkToTerm = null;
         try {
+            //TODO move to application properties
             linkToTerm = "https://www.ebi.ac.uk/ols/api/terms?iri=" + URLEncoder.encode(iri, "UTF-8");
         } catch (UnsupportedEncodingException e) {
             throw new RuntimeException(e);
         }
-        URL urlToTerm = null;
+        URL urlToTerm;
         try {
             urlToTerm = new URL(linkToTerm);
         } catch (MalformedURLException e) {
             throw new RuntimeException(e);
         }
-        String jsonOntology = "";
         ObjectMapper mapper = new ObjectMapper();
         try {
-            JsonNode node = mapper.readTree(urlToTerm);
-            this.node = node;
+            this.node = mapper.readTree(urlToTerm);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }

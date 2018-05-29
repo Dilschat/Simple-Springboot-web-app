@@ -32,7 +32,7 @@ public class FtpDownloader {
                         }
                         FTPClient client = new FTPClient();
                         client.connect(ftpServerPaths[0]);
-                        client.login(login, "password"); // log and pass just for this example impl
+                        client.login(login, password); // log and pass just for this example impl
                         System.out.println(client.getReplyString());
                         OutputStream outputStream = new BufferedOutputStream(new FileOutputStream(target));
                         client.enterLocalPassiveMode();

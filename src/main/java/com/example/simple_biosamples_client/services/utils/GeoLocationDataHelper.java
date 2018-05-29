@@ -17,7 +17,6 @@ public class GeoLocationDataHelper {
     }
 
     public Location convertToDecimalDegree(String location) {
-        //TODO working with raw lon lan
         int nsCoef = 1;
         if (location.contains("S")) {
             nsCoef = -1;
