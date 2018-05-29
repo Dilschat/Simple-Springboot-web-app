@@ -154,7 +154,11 @@ public class BiosampleToGA4GHMapper {
     private void mapAge(Attribute attribute) {
         Age age = new Age();
         age.setAge(attribute.getValue());
-        age.setAge_class(getOntologyTerm(attribute));
+        try {
+            age.setAge_class(getSingleOntologyTerm(attribute.getIri().first()));
+        } catch (NullPointerException e) {
+            age.setAge_class(null);
+        }
         ga4ghSample.setIndividual_age_at_collection(age);
     }
 
@@ -208,23 +212,33 @@ public class BiosampleToGA4GHMapper {
         ga4ghSample.addAttributeList("publications", convertObjectsToAttributeValues(rawSample.getPublications()));
     }
 
-
-    private OntologyTerm getOntologyTerm(Attribute attribute) {
+    /**
+     * Retrieves ontology term by link from OLS lookup service
+     *
+     * @param link iri of term
+     * @return retreived term
+     * @see OLSDataRetriever
+     */
+    private OntologyTerm getSingleOntologyTerm(String link) {
+        OLSDataRetriever retriever = new OLSDataRetriever();
         OntologyTerm term = new OntologyTerm();
-        term.setTerm_label(attribute.getValue());
-        term.setTerm_id(attribute.getIriOls());
+        retriever.readJsonFromUrl(link);
+        term.setTerm_id(retriever.StringGetOntologyTermId());
+        term.setTerm_label(retriever.StringGetOntologyTermLabel());
         return term;
     }
 
-
-    private SortedSet<OntologyTerm> getOntologyTerms(SortedSet<String> iri) {
+    /**
+     * Retreives ontology terms by set of links
+     *
+     * @param iris set of iris to ontology terms
+     * @return set of Ontology terms
+     * @see OntologyTerm
+     */
+    private SortedSet<OntologyTerm> getOntologyTerms(SortedSet<String> iris) {
         SortedSet<OntologyTerm> terms = new TreeSet<>();
-        OLSDataRetriever retriever = new OLSDataRetriever();
-        for (String link : iri) {
-            OntologyTerm term = new OntologyTerm();
-            retriever.readJsonFromUrl(link);
-            term.setTerm_id(retriever.StringGetOntologyTermId());
-            term.setTerm_label(retriever.StringGetOntologyTermLabel());
+        for (String link : iris) {
+            OntologyTerm term = getSingleOntologyTerm(link);
             terms.add(term);
         }
         return terms;
