@@ -5,8 +5,10 @@ import uk.ac.ebi.biosamples.model.Organization;
 import uk.ac.ebi.biosamples.model.Publication;
 
 import java.util.List;
+import java.util.Objects;
 
 public class AttributeValue {
+
 
     private String type;
     private Object value;
@@ -74,5 +76,16 @@ public class AttributeValue {
         }
 
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        AttributeValue that = (AttributeValue) o;
+        return Objects.equals(type, that.type) &&
+                Objects.equals(value, that.value);
+    }
+
+
 
 }
