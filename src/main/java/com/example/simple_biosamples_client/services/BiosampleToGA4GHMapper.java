@@ -81,7 +81,9 @@ public class BiosampleToGA4GHMapper {
             }
 
         }
-        mapLocation(locationInfo);
+        if (!locationInfo.isEmpty()) {
+            mapLocation(locationInfo);
+        }
         mapAttributes(attributes);
         mapBioCharacteristics(bioCharacteristics);
     }
@@ -206,10 +208,18 @@ public class BiosampleToGA4GHMapper {
         ga4ghSample.addSingleAttributeValue("released", rawSample.getReleaseDate());
         ga4ghSample.addSingleAttributeValue("updated", rawSample.getUpdateDate());
         ga4ghSample.addSingleAttributeValue("domain", rawSample.getDomain());
-        ga4ghSample.addAttributeList("contacts", convertObjectsToAttributeValues(rawSample.getContacts()));
-        ga4ghSample.addAttributeList("external_references", convertObjectsToAttributeValues(rawSample.getExternalReferences()));
-        ga4ghSample.addAttributeList("organizations", convertObjectsToAttributeValues(rawSample.getOrganizations()));
-        ga4ghSample.addAttributeList("publications", convertObjectsToAttributeValues(rawSample.getPublications()));
+        if (!rawSample.getContacts().isEmpty()) {
+            ga4ghSample.addAttributeList("contacts", convertObjectsToAttributeValues(rawSample.getContacts()));
+        }
+        if (!rawSample.getExternalReferences().isEmpty()) {
+            ga4ghSample.addAttributeList("external_references", convertObjectsToAttributeValues(rawSample.getExternalReferences()));
+        }
+        if (!rawSample.getOrganizations().isEmpty()) {
+            ga4ghSample.addAttributeList("organizations", convertObjectsToAttributeValues(rawSample.getOrganizations()));
+        }
+        if (!rawSample.getPublications().isEmpty()) {
+            ga4ghSample.addAttributeList("publications", convertObjectsToAttributeValues(rawSample.getPublications()));
+        }
     }
 
     /**
@@ -229,7 +239,7 @@ public class BiosampleToGA4GHMapper {
     }
 
     /**
-     * Retreives ontology terms by set of links
+     * Retrieves ontology terms by set of links
      *
      * @param iris set of iris to ontology terms
      * @return set of Ontology terms
