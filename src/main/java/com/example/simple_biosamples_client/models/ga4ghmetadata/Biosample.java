@@ -23,7 +23,7 @@ public class Biosample {
     private GeoLocation location;
 
     @Autowired
-    Biosample(Attributes attributes) {
+    public Biosample(Attributes attributes) {
         this.attributes = attributes;
         bio_characteristic = new TreeSet<>();
     }
