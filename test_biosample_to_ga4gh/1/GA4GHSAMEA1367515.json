@@ -3,7 +3,7 @@
 	"name" : "source GSM882511 1",
 	"dataset_id" : null,
 	"individual_id" : null,
-	"description" : null,
+	"description": "Human Brain Tissue: CRBLM",
 	"bio_characteristics" :  [
 		{
 			"description" : "Organism",
@@ -290,9 +290,9 @@
 								"string_value" : "Sampath Arepalli"
 								}
 							]
-						},
+						}
 
-					},	
+					}
 
 				]
 			} 
@@ -306,14 +306,6 @@
 			"relation" : "has member" 
 		},
 	], 
-	"individual_age_at_collection" : {
-		"age" : "19",
-		"age_class" : null
-	},
-	"location" : {} 
-
-
-
-
-
+	"individual_age_at_collection": null,
+"location": null
 }

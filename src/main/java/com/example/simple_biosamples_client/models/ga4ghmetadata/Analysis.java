@@ -1,15 +1,20 @@
 package com.example.simple_biosamples_client.models.ga4ghmetadata;
 
-public class Analysis {
-    String id;
-    String name;
-    String description;
-    String created;
-    String updated;
-    String type;
-    String[] software;
-    Attributes attributes;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
+@JsonInclude
+public class Analysis {
+    private String id;
+    private String name;
+    private String description;
+    private String created;
+    private String updated;
+    private String type;
+    private String[] software;
+    private Attributes attributes;
+
+    @JsonProperty("id")
     public String getId() {
         return id;
     }
@@ -18,6 +23,7 @@ public class Analysis {
         this.id = id;
     }
 
+    @JsonProperty("name")
     public String getName() {
         return name;
     }
@@ -26,6 +32,7 @@ public class Analysis {
         this.name = name;
     }
 
+    @JsonProperty("description")
     public String getDescription() {
         return description;
     }
@@ -34,6 +41,7 @@ public class Analysis {
         this.description = description;
     }
 
+    @JsonProperty("created")
     public String getCreated() {
         return created;
     }
@@ -42,6 +50,7 @@ public class Analysis {
         this.created = created;
     }
 
+    @JsonProperty("updated")
     public String getUpdated() {
         return updated;
     }
@@ -50,6 +59,7 @@ public class Analysis {
         this.updated = updated;
     }
 
+    @JsonProperty("type")
     public String getType() {
         return type;
     }
@@ -58,6 +68,7 @@ public class Analysis {
         this.type = type;
     }
 
+    @JsonProperty("software")
     public String[] getSoftware() {
         return software;
     }
@@ -66,6 +77,7 @@ public class Analysis {
         this.software = software;
     }
 
+    @JsonProperty("attributes")
     public Attributes getAttributes() {
         return attributes;
     }

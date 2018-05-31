@@ -1,5 +1,9 @@
 package com.example.simple_biosamples_client.models.ga4ghmetadata;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
+@JsonInclude(JsonInclude.Include.ALWAYS)
 public class GeoLocation {
     private String label;
     private String precision;
@@ -7,6 +11,7 @@ public class GeoLocation {
     private double longtitude;
     private double altitude;
 
+    @JsonProperty("label")
     public String getLabel() {
         return label;
     }
@@ -15,6 +20,7 @@ public class GeoLocation {
         this.label = label;
     }
 
+    @JsonProperty("precision")
     public String getPrecision() {
         return precision;
     }
@@ -23,6 +29,7 @@ public class GeoLocation {
         this.precision = precision;
     }
 
+    @JsonProperty("latitude")
     public double getLatitude() {
         return latitude;
     }
@@ -31,6 +38,7 @@ public class GeoLocation {
         this.latitude = latitude;
     }
 
+    @JsonProperty("longtitude")
     public double getLongtitude() {
         return longtitude;
     }
@@ -39,6 +47,7 @@ public class GeoLocation {
         this.longtitude = longtitude;
     }
 
+    @JsonProperty("altitude")
     public double getAltitude() {
         return altitude;
     }

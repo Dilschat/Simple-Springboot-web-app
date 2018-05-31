@@ -1,5 +1,7 @@
 package com.example.simple_biosamples_client.models.ga4ghmetadata;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -9,6 +11,7 @@ import java.util.SortedSet;
 import java.util.TreeSet;
 
 @Component
+@JsonInclude
 public class Biosample {
 
     private String id;
@@ -27,6 +30,8 @@ public class Biosample {
         this.attributes = attributes;
         bio_characteristic = new TreeSet<>();
     }
+
+    @JsonProperty("id")
     public String getId() {
         return id;
     }
@@ -35,14 +40,7 @@ public class Biosample {
         this.id = id;
     }
 
-    public String getDataset_id() {
-        return dataset_id;
-    }
-
-    public void setDataset_id(String dataset_id) {
-        this.dataset_id = dataset_id;
-    }
-
+    @JsonProperty("name")
     public String getName() {
         return name;
     }
@@ -51,22 +49,16 @@ public class Biosample {
         this.name = name;
     }
 
-    public String getDescription() {
-        return description;
+    @JsonProperty("dataset_id")
+    public String getDataset_id() {
+        return dataset_id;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+    public void setDataset_id(String dataset_id) {
+        this.dataset_id = dataset_id;
     }
 
-    public SortedSet<Biocharacteristics> getBio_characteristic() {
-        return bio_characteristic;
-    }
-
-    public void setBio_characteristic(SortedSet<Biocharacteristics> bio_characteristic) {
-        this.bio_characteristic = bio_characteristic;
-    }
-
+    @JsonProperty("individual_id")
     public String getIndividual_id() {
         return individual_id;
     }
@@ -75,6 +67,26 @@ public class Biosample {
         this.individual_id = individual_id;
     }
 
+    @JsonProperty("description")
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    @JsonProperty("biocharacteristic")
+    public SortedSet<Biocharacteristics> getBio_characteristic() {
+        return bio_characteristic;
+    }
+
+    public void setBio_characteristic(SortedSet<Biocharacteristics> bio_characteristic) {
+        this.bio_characteristic = bio_characteristic;
+    }
+
+
+    @JsonProperty("attributes")
     public Attributes getAttributes() {
         return attributes;
     }
@@ -83,6 +95,7 @@ public class Biosample {
         this.attributes = attributes;
     }
 
+    @JsonProperty("external_identifiers")
     public SortedSet<ExternalIdentifier> getExternal_identifiers() {
         return external_identifiers;
     }
@@ -91,6 +104,7 @@ public class Biosample {
         this.external_identifiers = external_identifiers;
     }
 
+    @JsonProperty("individual_age_at_collection")
     public Age getIndividual_age_at_collection() {
         return individual_age_at_collection;
     }
@@ -99,6 +113,7 @@ public class Biosample {
         this.individual_age_at_collection = individual_age_at_collection;
     }
 
+    @JsonProperty("location")
     public GeoLocation getLocation() {
         return location;
     }

@@ -1,12 +1,12 @@
 package com.example.simple_biosamples_client.models.ga4ghmetadata;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import uk.ac.ebi.biosamples.model.Contact;
 import uk.ac.ebi.biosamples.model.Organization;
 import uk.ac.ebi.biosamples.model.Publication;
 
 import java.util.List;
 import java.util.Objects;
-
 public class AttributeValue {
 
 
@@ -75,6 +75,11 @@ public class AttributeValue {
             return false;
         }
 
+    }
+
+    @JsonCreator
+    public static AttributeValue build() {
+        return null;
     }
 
     @Override

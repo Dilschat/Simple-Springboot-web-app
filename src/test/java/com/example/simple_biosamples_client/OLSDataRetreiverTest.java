@@ -22,5 +22,6 @@ public class OLSDataRetreiverTest {
         retriever.readJsonFromUrl("http://purl.obolibrary.org/obo/NCBITaxon_9606");
         String expected_label = "Homo sapiens";
         String actual_label = retriever.StringGetOntologyTermLabel();
+        assertEquals(actual_label, expected_label);
     }
 }

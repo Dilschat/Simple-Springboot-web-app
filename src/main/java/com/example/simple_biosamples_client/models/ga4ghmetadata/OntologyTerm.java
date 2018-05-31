@@ -1,9 +1,14 @@
 package com.example.simple_biosamples_client.models.ga4ghmetadata;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
+@JsonInclude
 public class OntologyTerm implements Comparable {
     private String term_id;
     private String term_label;
 
+    @JsonProperty("term_id")
     public String getTerm_id() {
         return term_id;
     }
@@ -12,6 +17,7 @@ public class OntologyTerm implements Comparable {
         this.term_id = term_id;
     }
 
+    @JsonProperty("term_label")
     public String getTerm_label() {
         return term_label;
     }
