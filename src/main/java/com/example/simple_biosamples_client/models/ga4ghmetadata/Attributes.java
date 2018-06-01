@@ -1,16 +1,16 @@
 package com.example.simple_biosamples_client.models.ga4ghmetadata;
 
 import com.example.simple_biosamples_client.services.AttributeSerializer;
-import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import org.springframework.stereotype.Component;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.SortedMap;
 import java.util.TreeMap;
 
 @Component
-@JsonInclude
+@JsonSerialize(using = AttributeSerializer.class)
 public class Attributes {
     private SortedMap<String, List<AttributeValue>> attributes;
 
@@ -18,7 +18,7 @@ public class Attributes {
         this.attributes = new TreeMap<>();
     }
 
-    @JsonSerialize(using = AttributeSerializer.class)
+
     public SortedMap<String, List<AttributeValue>> getAttributes() {
         return attributes;
     }
@@ -28,6 +28,12 @@ public class Attributes {
     }
 
     void addAttribute(String label, List<AttributeValue> values) {
+        attributes.put(label, values);
+    }
+
+    public void addSingleAttribute(String label, AttributeValue value) {
+        ArrayList<AttributeValue> values = new ArrayList<>();
+        values.add(value);
         attributes.put(label, values);
     }
 }

@@ -1,12 +1,13 @@
 package com.example.simple_biosamples_client.models.ga4ghmetadata;
 
+import com.example.simple_biosamples_client.services.AttributeValueSerializer;
 import com.fasterxml.jackson.annotation.JsonCreator;
-import uk.ac.ebi.biosamples.model.Contact;
-import uk.ac.ebi.biosamples.model.Organization;
-import uk.ac.ebi.biosamples.model.Publication;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
 import java.util.List;
 import java.util.Objects;
+
+@JsonSerialize(using = AttributeValueSerializer.class)
 public class AttributeValue {
 
 
@@ -14,7 +15,7 @@ public class AttributeValue {
     private Object value;
 
     public AttributeValue(Object value) {
-        if (value instanceof String || value instanceof Contact || value instanceof Organization || value instanceof Publication) {
+        if (value instanceof String) {
             type = "string_value";
             this.value = value;
         } else if (value instanceof Long) {
@@ -90,7 +91,6 @@ public class AttributeValue {
         return Objects.equals(type, that.type) &&
                 Objects.equals(value, that.value);
     }
-
 
 
 }

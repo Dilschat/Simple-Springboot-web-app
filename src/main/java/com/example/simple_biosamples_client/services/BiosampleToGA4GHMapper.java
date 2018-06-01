@@ -4,16 +4,14 @@ import com.example.simple_biosamples_client.models.ga4ghmetadata.*;
 import com.example.simple_biosamples_client.services.utils.GeoLocationDataHelper;
 import com.example.simple_biosamples_client.services.utils.Location;
 import com.example.simple_biosamples_client.services.utils.OLSDataRetriever;
+import com.example.simple_biosamples_client.services.utils.ObjectUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import uk.ac.ebi.biosamples.model.Attribute;
 import uk.ac.ebi.biosamples.model.Relationship;
 import uk.ac.ebi.biosamples.model.Sample;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.SortedSet;
-import java.util.TreeSet;
+import java.util.*;
 
 /**
  * Biosamples format to GA4GH format data converter
@@ -257,8 +255,24 @@ public class BiosampleToGA4GHMapper {
     private <T> List<AttributeValue> convertObjectsToAttributeValues(SortedSet<T> values) {
         List<AttributeValue> attributes = new ArrayList<>();
         for (T value : values) {
-            AttributeValue attributeValue = new AttributeValue(value);
-            attributes.add(attributeValue);
+            List<AttributeValue> attributesOfObject = new ArrayList<>();
+            Map<String, Object> objectFieldsAndValues;
+            try {
+                objectFieldsAndValues = ObjectUtils.getFieldNamesAndValues(value, false);
+            } catch (IllegalAccessException e) {
+                e.printStackTrace();
+                break;
+            }
+            Set<String> namesOfFields = objectFieldsAndValues.keySet();
+            for (String key : namesOfFields) {
+                Attributes attributesFromField = new Attributes();
+                String object = (String) objectFieldsAndValues.get(key);
+                if (object != null) {
+                    attributesFromField.addSingleAttribute(key, new AttributeValue(object));
+                    attributesOfObject.add(new AttributeValue(attributesFromField));
+                }
+            }
+            attributes.add(new AttributeValue(attributesOfObject));
         }
         return attributes;
 

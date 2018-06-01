@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.util.SortedSet;
+import java.util.TreeSet;
 
 @JsonInclude(JsonInclude.Include.ALWAYS)
 public class Biocharacteristics implements Comparable {
@@ -12,6 +13,11 @@ public class Biocharacteristics implements Comparable {
     private SortedSet<OntologyTerm> ontology_terms;
     private SortedSet<OntologyTerm> negated_ontology_terms;
     private String scope;
+
+    public Biocharacteristics() {
+        ontology_terms = new TreeSet<>();
+        negated_ontology_terms = new TreeSet<>();
+    }
 
     @JsonProperty("description")
     public String getDescription() {

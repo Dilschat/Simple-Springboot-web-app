@@ -1,7 +1,10 @@
 package com.example.simple_biosamples_client.models.ga4ghmetadata;
 
+import com.example.simple_biosamples_client.services.AttributeSerializer;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -12,6 +15,8 @@ import java.util.TreeSet;
 
 @Component
 @JsonInclude
+@JsonPropertyOrder({"id", "dataset_id", "individual_id", "name", "description", "bio_characteristic", "attributes", "external_identifiers",
+        "individual_age_at_collection", "location"})
 public class Biosample {
 
     private String id;
@@ -86,7 +91,7 @@ public class Biosample {
     }
 
 
-    @JsonProperty("attributes")
+    @JsonSerialize(using = AttributeSerializer.class)
     public Attributes getAttributes() {
         return attributes;
     }
