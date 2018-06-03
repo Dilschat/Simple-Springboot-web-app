@@ -8,12 +8,16 @@ import java.util.List;
 import java.util.Objects;
 
 @JsonSerialize(using = AttributeValueSerializer.class)
+//@JsonDeserialize()
 public class AttributeValue {
 
 
     private String type;
     private Object value;
 
+    public AttributeValue() {
+
+    }
     public AttributeValue(Object value) {
         if (value instanceof String) {
             type = "string_value";

@@ -34,6 +34,7 @@ public class MappingTests {
     public void geolocation_mapping_test() throws IOException {
         JsonParser parser = new JsonParser();
         ObjectMapper jsonMapper = new ObjectMapper();
+
         String sampleJson = "SAMEA1367515";
         String biosampleJson = readFile("/home/dilshat/Desktop/simple_biosamples_client/test_biosample_to_ga4gh/1/GA4GHSAMEA1367515.json", StandardCharsets.UTF_8);
         Gson gson = new Gson();
@@ -41,7 +42,11 @@ public class MappingTests {
         Biosample biosample = mapper.mapSampleToGA4GH(sample);
         String mappedBiosampleJson = jsonMapper.writeValueAsString(biosample);//jsonMapper.writeValueAsString(biosample);
         //BiosampleToGA4GHMapper mapper = new BiosampleToGA4GHMapper(new Biosample(), new GeoLocationDataHelper());
+        Biosample b = jsonMapper.readValue(mappedBiosampleJson, Biosample.class);
+        System.out.println("hi");
+
         PrintWriter printWriter = new PrintWriter("file.json");
+
         printWriter.write(mappedBiosampleJson);
         printWriter.flush();
         printWriter.close();

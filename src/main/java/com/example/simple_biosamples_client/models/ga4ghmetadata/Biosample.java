@@ -1,17 +1,17 @@
 package com.example.simple_biosamples_client.models.ga4ghmetadata;
 
+import com.example.simple_biosamples_client.services.AttributeDeserializer;
 import com.example.simple_biosamples_client.services.AttributeSerializer;
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.SortedSet;
-import java.util.TreeSet;
+import java.util.*;
 
 @Component
 @JsonInclude
@@ -34,6 +34,7 @@ public class Biosample {
     public Biosample(Attributes attributes) {
         this.attributes = attributes;
         bio_characteristic = new TreeSet<>();
+        external_identifiers = new TreeSet<>();
     }
 
     @JsonProperty("id")
@@ -141,6 +142,74 @@ public class Biosample {
     public void addBioCharacteristic(Biocharacteristics biocharacteristics) {
         bio_characteristic.add(biocharacteristics);
     }
+
+    @JsonCreator
+    public static Biosample build(
+            @JsonProperty("id") String id,
+            @JsonProperty("name") String name,
+            @JsonProperty("dataset_id") String dataset_id,
+            @JsonProperty("individual_id") String individual_id,
+            @JsonProperty("description") String description,
+            @JsonProperty("biocharacteristic") Collection<Biocharacteristics> biocharacteristics,
+            @JsonProperty("attributes") @JsonDeserialize(using = AttributeDeserializer.class) Attributes attributes,
+            @JsonProperty("external_identifiers") Collection<ExternalIdentifier> externalIdentifiers,
+            @JsonProperty("individual_age_at_collection") Age age,
+            @JsonProperty("location") GeoLocation location) {
+        Biosample biosample = new Biosample(new Attributes());
+
+        if (id == null) throw new IllegalArgumentException("Sample id must be provided");
+        biosample.id = id.trim();
+
+        if (name == null) throw new IllegalArgumentException("Sample id must be provided");
+        biosample.name = name.trim();
+
+        if (dataset_id != null) {
+            biosample.dataset_id = dataset_id;
+        }
+
+        if (individual_id != null) {
+            biosample.individual_id = individual_id;
+        }
+
+        if (description != null) {
+            biosample.description = description;
+        }
+
+        if (biocharacteristics != null) {
+
+            biosample.bio_characteristic.addAll(biocharacteristics);
+        }
+
+        if (attributes != null) {
+            biosample.attributes = attributes;
+        }
+
+        if (externalIdentifiers != null) {
+            biosample.external_identifiers.addAll(externalIdentifiers);
+        }
+
+        if (age != null) {
+            biosample.individual_age_at_collection = age;
+        }
+
+        if (location != null) {
+            biosample.location = location;
+        }
+
+        return biosample;
+
+
+    }
+
+
+
+
+
+
+
+
+
+
 
 
 }
