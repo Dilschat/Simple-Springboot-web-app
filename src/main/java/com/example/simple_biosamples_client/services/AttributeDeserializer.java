@@ -91,7 +91,11 @@ public class AttributeDeserializer extends StdDeserializer<Attributes> {
                     case "attributes":
                         attributeValues.add(new AttributeValue(deserializeAttributes(value)));
                     case "attribute_list":
-                        attributeValues.add(new AttributeValue(deserializeAttributeList(value)));
+                        List<AttributeValue> values = deserializeAttributeList(value);
+                        //TODO add comments or reformat code to more underatandable
+                        if (values != null && values.size() > 0) {
+                            attributeValues.add(new AttributeValue());
+                        }
                 }
             }
         }

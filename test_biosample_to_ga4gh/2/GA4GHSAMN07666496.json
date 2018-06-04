@@ -1,9 +1,9 @@
 {
   "id": "SAMN07666496",
-  "name": "RNAseq Koptk1-sgRNA2",
   "dataset_id": null,
   "individual_id": null,
-  "description": null,
+  "name": "RNAseq Koptk1-sgRNA2",
+  "description": "Human Brain Tissue: CRBLM",
   "bio_characteristics": [
     {
       "description": "Organism",
@@ -21,7 +21,7 @@
       "ontology_terms": [
         {
           "term_id": "EFO:0006283",
-          "term_label": "Koptk1"
+          "term_label": "KOPT-K1"
         }
       ],
       "negated_ontology_terms": [],
@@ -32,7 +32,7 @@
       "ontology_terms": [
         {
           "term_id": "EFO:0005592",
-          "term_label": "T cell leukemia"
+          "term_label": "T-cell leukemia"
         }
       ],
       "negated_ontology_terms": [],
@@ -43,7 +43,7 @@
       "ontology_terms": [
         {
           "term_id": "EFO:0005592",
-          "term_label": "T cell leukemia"
+          "term_label": "T-cell leukemia"
         }
       ],
       "negated_ontology_terms": [],
@@ -51,17 +51,299 @@
     }
   ],
   "attributes": {
-    "released": {
+    "Sample_source_name": {
       "values": [
         {
-          "string_value": "2017-09-20"
+          "string_value": "Human Brain Tissue: CRBLM"
         }
       ]
     },
-    "updated": {
+    "Sample_title": {
       "values": [
         {
-          "string_value": "2018-01-20"
+          "string_value": "UMARY-1652-CRBLM"
+        }
+      ]
+    },
+    "age (y)": {
+      "values": [
+        {
+          "string_value": "19"
+        }
+      ]
+    },
+    "batch": {
+      "values": [
+        {
+          "string_value": "D"
+        }
+      ]
+    },
+    "contacts": {
+      "values": [
+        {
+          "attributes": {
+            "name": {
+              "values": [
+                {
+                  "string_value": "Adaikalavan Ramasamy"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "attributes": {
+            "name": {
+              "values": [
+                {
+                  "string_value": "Alan Zonderman"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "attributes": {
+            "name": {
+              "values": [
+                {
+                  "string_value": "Allisa Dillman"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "attributes": {
+            "name": {
+              "values": [
+                {
+                  "string_value": "Andrew Singleton"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "attributes": {
+            "name": {
+              "values": [
+                {
+                  "string_value": "Bryan Traynor"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "attributes": {
+            "name": {
+              "values": [
+                {
+                  "string_value": "Colin Smith"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "attributes": {
+            "name": {
+              "values": [
+                {
+                  "string_value": "Dan Longo"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "attributes": {
+            "name": {
+              "values": [
+                {
+                  "string_value": "Daniah Trabzuni"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "attributes": {
+            "name": {
+              "values": [
+                {
+                  "string_value": "Dena Hernandez"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "attributes": {
+            "name": {
+              "values": [
+                {
+                  "string_value": "H Zielke"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "attributes": {
+            "name": {
+              "values": [
+                {
+                  "string_value": "J Raphael Gibbs"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "attributes": {
+            "name": {
+              "values": [
+                {
+                  "string_value": "Jesse Gibbs"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "attributes": {
+            "name": {
+              "values": [
+                {
+                  "string_value": "John Hardy"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "attributes": {
+            "name": {
+              "values": [
+                {
+                  "string_value": "Juan Troncoso"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "attributes": {
+            "name": {
+              "values": [
+                {
+                  "string_value": "Luigi Ferrucci"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "attributes": {
+            "name": {
+              "values": [
+                {
+                  "string_value": "Marcel van der Brug"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "attributes": {
+            "name": {
+              "values": [
+                {
+                  "string_value": "Mark Cookson"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "attributes": {
+            "name": {
+              "values": [
+                {
+                  "string_value": "Michael Nalls"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "attributes": {
+            "name": {
+              "values": [
+                {
+                  "string_value": "Mike Weale"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "attributes": {
+            "name": {
+              "values": [
+                {
+                  "string_value": "Mina Ryten"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "attributes": {
+            "name": {
+              "values": [
+                {
+                  "string_value": "Richard O'Brien"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "attributes": {
+            "name": {
+              "values": [
+                {
+                  "string_value": "Robert Johnson"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "attributes": {
+            "name": {
+              "values": [
+                {
+                  "string_value": "Robert Walker"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "attributes": {
+            "name": {
+              "values": [
+                {
+                  "string_value": "Sampath Arepalli"
+                }
+              ]
+            }
+          }
         }
       ]
     },
@@ -72,10 +354,54 @@
         }
       ]
     },
+    "external_references": {
+      "values": [
+        {
+          "attributes": {
+            "hash": {
+              "values": [
+                {
+                  "string_value": "1a9ccca098b73510a12c3d84ea5d53150f0b7c5976a4fad36bf9275405ef5a33"
+                }
+              ]
+            },
+            "url": {
+              "values": [
+                {
+                  "string_value": "http://www.ebi.ac.uk/ena/data/view/SAMN07666496"
+                }
+              ]
+            }
+          }
+        }
+      ]
+    },
     "model": {
       "values": [
         {
           "string_value": "Generic"
+        }
+      ]
+    },
+    "organizations": {
+      "values": [
+        {
+          "attributes": {
+            "name": {
+              "values": [
+                {
+                  "string_value": "National Institutue on Aging, NIH"
+                }
+              ]
+            },
+            "role": {
+              "values": [
+                {
+                  "string_value": "submitter "
+                }
+              ]
+            }
+          }
         }
       ]
     },
@@ -86,6 +412,20 @@
         }
       ]
     },
+    "pmi (hr)": {
+      "values": [
+        {
+          "string_value": "21"
+        }
+      ]
+    },
+    "released": {
+      "values": [
+        {
+          "string_value": "2017-09-20"
+        }
+      ]
+    },
     "synonym": {
       "values": [
         {
@@ -93,27 +433,22 @@
         }
       ]
     },
-    "externalReferences": {
+    "tissuebank": {
       "values": [
         {
-          "url": {
-            "values": [
-              {
-                "string_values": "http://www.ebi.ac.uk/ena/data/view/SAMN07666496"
-              }
-            ]
-          }
+          "string_value": "UMARY"
         }
       ]
     },
-    "organization": {
-      "values": []
-    },
-    "contact": {
-      "values": []
+    "updated": {
+      "values": [
+        {
+          "string_value": "2018-01-20"
+        }
+      ]
     }
   },
   "external_identifiers": [],
-  "individual_age_at_collection": {},
-  "location": {}
+  "individual_age_at_collection": null,
+  "location": null
 }
