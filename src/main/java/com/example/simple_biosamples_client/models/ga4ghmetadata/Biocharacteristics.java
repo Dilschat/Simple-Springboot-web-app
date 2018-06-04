@@ -3,6 +3,7 @@ package com.example.simple_biosamples_client.models.ga4ghmetadata;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+import java.util.Objects;
 import java.util.SortedSet;
 import java.util.TreeSet;
 
@@ -59,5 +60,22 @@ public class Biocharacteristics implements Comparable {
     @Override
     public int compareTo(Object o) {
         return this.getDescription().compareTo(((Biocharacteristics) o).getDescription());
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Biocharacteristics that = (Biocharacteristics) o;
+        return Objects.equals(description, that.description) &&
+                Objects.equals(ontology_terms, that.ontology_terms) &&
+                Objects.equals(negated_ontology_terms, that.negated_ontology_terms) &&
+                Objects.equals(scope, that.scope);
+    }
+
+    @Override
+    public int hashCode() {
+
+        return Objects.hash(description, ontology_terms, negated_ontology_terms, scope);
     }
 }

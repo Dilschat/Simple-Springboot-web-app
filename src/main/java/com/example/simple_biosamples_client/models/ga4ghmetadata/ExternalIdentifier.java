@@ -3,6 +3,8 @@ package com.example.simple_biosamples_client.models.ga4ghmetadata;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+import java.util.Objects;
+
 @JsonInclude(JsonInclude.Include.ALWAYS)
 public class ExternalIdentifier implements Comparable {
     private String identifier;
@@ -29,5 +31,20 @@ public class ExternalIdentifier implements Comparable {
     @Override
     public int compareTo(Object o) {
         return this.getIdentifier().compareTo(((ExternalIdentifier) o).getIdentifier());
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        ExternalIdentifier that = (ExternalIdentifier) o;
+        return Objects.equals(identifier, that.identifier) &&
+                Objects.equals(relation, that.relation);
+    }
+
+    @Override
+    public int hashCode() {
+
+        return Objects.hash(identifier, relation);
     }
 }

@@ -3,6 +3,8 @@ package com.example.simple_biosamples_client.models.ga4ghmetadata;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+import java.util.Objects;
+
 @JsonInclude
 public class OntologyTerm implements Comparable {
     private String term_id;
@@ -29,5 +31,20 @@ public class OntologyTerm implements Comparable {
     @Override
     public int compareTo(Object o) {
         return this.getTerm_label().compareTo(((OntologyTerm) o).getTerm_label());
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        OntologyTerm term = (OntologyTerm) o;
+        return Objects.equals(term_id, term.term_id) &&
+                Objects.equals(term_label, term.term_label);
+    }
+
+    @Override
+    public int hashCode() {
+
+        return Objects.hash(term_id, term_label);
     }
 }

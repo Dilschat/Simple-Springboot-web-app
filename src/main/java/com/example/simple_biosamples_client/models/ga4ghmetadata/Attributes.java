@@ -6,10 +6,7 @@ import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import org.springframework.stereotype.Component;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.SortedMap;
-import java.util.TreeMap;
+import java.util.*;
 
 @Component
 @JsonSerialize(using = AttributeSerializer.class)
@@ -38,5 +35,19 @@ public class Attributes {
         ArrayList<AttributeValue> values = new ArrayList<>();
         values.add(value);
         attributes.put(label, values);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Attributes that = (Attributes) o;
+        return Objects.equals(attributes, that.attributes);
+    }
+
+    @Override
+    public int hashCode() {
+
+        return Objects.hash(attributes);
     }
 }

@@ -1,5 +1,7 @@
 package com.example.simple_biosamples_client.models.ga4ghmetadata;
 
+import java.util.Objects;
+
 public class Experiment {
     private String id;
     private String name;
@@ -144,5 +146,34 @@ public class Experiment {
 
     public void setAttributes(Attributes attributes) {
         this.attributes = attributes;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Experiment that = (Experiment) o;
+        return Objects.equals(id, that.id) &&
+                Objects.equals(name, that.name) &&
+                Objects.equals(description, that.description) &&
+                Objects.equals(created, that.created) &&
+                Objects.equals(updated, that.updated) &&
+                Objects.equals(run_time, that.run_time) &&
+                Objects.equals(molecule, that.molecule) &&
+                Objects.equals(strategy, that.strategy) &&
+                Objects.equals(selection, that.selection) &&
+                Objects.equals(library, that.library) &&
+                Objects.equals(library_layout, that.library_layout) &&
+                Objects.equals(unstrument_model, that.unstrument_model) &&
+                Objects.equals(sequencing_center, that.sequencing_center) &&
+                Objects.equals(location, that.location) &&
+                Objects.equals(platform_util, that.platform_util) &&
+                Objects.equals(attributes, that.attributes);
+    }
+
+    @Override
+    public int hashCode() {
+
+        return Objects.hash(id, name, description, created, updated, run_time, molecule, strategy, selection, library, library_layout, unstrument_model, sequencing_center, location, platform_util, attributes);
     }
 }

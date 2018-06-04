@@ -82,7 +82,7 @@ public class Biosample {
         this.description = description;
     }
 
-    @JsonProperty("biocharacteristic")
+    @JsonProperty("bio_characteristics")
     public SortedSet<Biocharacteristics> getBio_characteristic() {
         return bio_characteristic;
     }
@@ -202,14 +202,26 @@ public class Biosample {
     }
 
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Biosample biosample = (Biosample) o;
+        return Objects.equals(id, biosample.id) &&
+                Objects.equals(dataset_id, biosample.dataset_id) &&
+                Objects.equals(individual_id, biosample.individual_id) &&
+                Objects.equals(name, biosample.name) &&
+                Objects.equals(description, biosample.description) &&
+                Objects.equals(bio_characteristic, biosample.bio_characteristic) &&
+                Objects.equals(attributes, biosample.attributes) &&
+                Objects.equals(external_identifiers, biosample.external_identifiers) &&
+                Objects.equals(individual_age_at_collection, biosample.individual_age_at_collection) &&
+                Objects.equals(location, biosample.location);
+    }
 
+    @Override
+    public int hashCode() {
 
-
-
-
-
-
-
-
-
+        return Objects.hash(id, dataset_id, individual_id, name, description, bio_characteristic, attributes, external_identifiers, individual_age_at_collection, location);
+    }
 }

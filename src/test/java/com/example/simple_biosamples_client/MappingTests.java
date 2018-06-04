@@ -41,12 +41,7 @@ public class MappingTests {
         Sample sample = client.fetchSampleResource(sampleJson).get().getContent();
         Biosample biosample = mapper.mapSampleToGA4GH(sample);
         String mappedBiosampleJson = jsonMapper.writeValueAsString(biosample);//jsonMapper.writeValueAsString(biosample);
-        //BiosampleToGA4GHMapper mapper = new BiosampleToGA4GHMapper(new Biosample(), new GeoLocationDataHelper());
-        Biosample b = jsonMapper.readValue(mappedBiosampleJson, Biosample.class);
-        System.out.println("hi");
-
         PrintWriter printWriter = new PrintWriter("file.json");
-
         printWriter.write(mappedBiosampleJson);
         printWriter.flush();
         printWriter.close();
@@ -58,12 +53,6 @@ public class MappingTests {
 
     }
 
-    //    public String SampleFromFile(String path) throws FileNotFoundException {
-//        BufferedReader reader = new BufferedReader(new FileReader(path));
-//        Gson gson = new Gson();
-//        T json = gson.fromJson(reader, T.class);
-//        return json.toString();
-//    }
     static String readFile(String path, Charset encoding)
             throws IOException {
         byte[] encoded = Files.readAllBytes(Paths.get(path));

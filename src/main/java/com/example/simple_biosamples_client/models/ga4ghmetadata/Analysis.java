@@ -3,6 +3,9 @@ package com.example.simple_biosamples_client.models.ga4ghmetadata;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+import java.util.Arrays;
+import java.util.Objects;
+
 @JsonInclude
 public class Analysis {
     private String id;
@@ -84,5 +87,28 @@ public class Analysis {
 
     public void setAttributes(Attributes attributes) {
         this.attributes = attributes;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Analysis analysis = (Analysis) o;
+        return Objects.equals(id, analysis.id) &&
+                Objects.equals(name, analysis.name) &&
+                Objects.equals(description, analysis.description) &&
+                Objects.equals(created, analysis.created) &&
+                Objects.equals(updated, analysis.updated) &&
+                Objects.equals(type, analysis.type) &&
+                Arrays.equals(software, analysis.software) &&
+                Objects.equals(attributes, analysis.attributes);
+    }
+
+    @Override
+    public int hashCode() {
+
+        int result = Objects.hash(id, name, description, created, updated, type, attributes);
+        result = 31 * result + Arrays.hashCode(software);
+        return result;
     }
 }

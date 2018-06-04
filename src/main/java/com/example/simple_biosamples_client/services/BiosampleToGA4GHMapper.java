@@ -255,6 +255,7 @@ public class BiosampleToGA4GHMapper {
     private <T> List<AttributeValue> convertObjectsToAttributeValues(SortedSet<T> values) {
         List<AttributeValue> attributes = new ArrayList<>();
         for (T value : values) {
+            Attributes attribute = new Attributes();
             List<AttributeValue> attributesOfObject = new ArrayList<>();
             Map<String, Object> objectFieldsAndValues;
             try {
@@ -263,17 +264,18 @@ public class BiosampleToGA4GHMapper {
                 e.printStackTrace();
                 break;
             }
+            Attributes attributesFromField = new Attributes();
             Set<String> namesOfFields = objectFieldsAndValues.keySet();
             for (String key : namesOfFields) {
-                Attributes attributesFromField = new Attributes();
+
                 String object = (String) objectFieldsAndValues.get(key);
                 if (object != null) {
                     attributesFromField.addSingleAttribute(key, new AttributeValue(object));
-                    attributesOfObject.add(new AttributeValue(attributesFromField));
                 }
             }
-            attributes.add(new AttributeValue(attributesOfObject));
+            attributes.add(new AttributeValue(attributesFromField));
         }
+
         return attributes;
 
     }
