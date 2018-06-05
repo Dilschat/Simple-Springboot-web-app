@@ -1,8 +1,8 @@
 {
-  "id": "SAMN08033869",
-  "name": "C0743T26016100004_Week 7",
+  "id": "SAMN07566236",
   "dataset_id": null,
   "individual_id": null,
+  "name": "Human sample from Homo sapiens",
   "description": null,
   "bio_characteristics": [
     {
@@ -17,22 +17,22 @@
       "scope": null
     },
     {
-      "description": "Sex",
+      "description": "organism part",
       "ontology_terms": [
         {
-          "term_id": "PATO:0000383",
-          "term_label": "female"
+          "term_id": "EFO:0000296",
+          "term_label": "blood"
         }
       ],
       "negated_ontology_terms": [],
       "scope": null
     },
     {
-      "description": "environment biome",
+      "description": "race",
       "ontology_terms": [
         {
-          "term_id": "UBERON:0000160",
-          "term_label": "intestine"
+          "term_id": "EFO:0003157",
+          "term_label": "Chinese"
         }
       ],
       "negated_ontology_terms": [],
@@ -40,17 +40,17 @@
     }
   ],
   "attributes": {
-    "released": {
+    "biomaterial provider": {
       "values": [
         {
-          "string_value": "2017-11-17"
+          "string_value": "Beijing USCI Medical Laboratory"
         }
       ]
     },
-    "updated": {
+    "body weight (kg)": {
       "values": [
         {
-          "string_value": "2018-01-20"
+          "string_value": "46"
         }
       ]
     },
@@ -61,17 +61,46 @@
         }
       ]
     },
-    "biomaterial provider": {
+    "external_references": {
       "values": [
         {
-          "string_value": "Janssen Pharmaceutical Companies of Johnson & Johnson"
+          "attributes": {
+            "hash": {
+              "values": [
+                {
+                  "string_value": "739a9816a958c9abb429dfd5d93c00c742c1148f21cfa57d670eab59a01eecf6"
+                }
+              ]
+            },
+            "url": {
+              "values": [
+                {
+                  "string_value": "http://www.ebi.ac.uk/ena/data/view/SAMN07566236"
+                }
+              ]
+            }
+          }
+        }
+      ]
+    },
+    "gestational weeks": {
+      "values": [
+        {
+          "string_value": "18"
+        }
+      ]
+    },
+    "individual ID": {
+      "values": [
+        {
+          "string_value": "ID_652"
         }
       ]
     },
     "isolate": {
       "values": [
         {
-          "string_value": "C0743T26016100004_Week 7"
+          "string_value": "pregnant woman"
         }
       ]
     },
@@ -82,13 +111,6 @@
         }
       ]
     },
-    "organism part": {
-      "values": [
-        {
-          "string_value": "feces"
-        }
-      ]
-    },
     "package": {
       "values": [
         {
@@ -96,51 +118,32 @@
         }
       ]
     },
+    "released": {
+      "values": [
+        {
+          "string_value": "2017-08-27"
+        }
+      ]
+    },
     "synonym": {
       "values": [
         {
-          "string_value": "A7893421-6"
+          "string_value": "nipt_scisoon_0652"
         }
       ]
     },
-    "visit": {
+    "updated": {
       "values": [
         {
-          "string_value": "Week 6"
+          "string_value": "2018-01-22"
         }
       ]
-    },
-    "USUBJID": {
-      "values": [
-        {
-          "string_value": "C0743T26016100004"
-        }
-      ]
-    },
-    "externalReferences": {
-      "values": [
-        {
-          "url": {
-            "values": [
-              {
-                "string_values": "http://www.ebi.ac.uk/ena/data/view/SAMN08033869"
-              }
-            ]
-          }
-        }
-      ]
-    },
-    "organization": {
-      "values": []
-    },
-    "contact": {
-      "values": []
     }
   },
   "external_identifiers": [],
   "individual_age_at_collection": {
-    "age": "29",
+    "age": "40",
     "age_class": null
   },
-  "location": {}
+  "location": null
 }

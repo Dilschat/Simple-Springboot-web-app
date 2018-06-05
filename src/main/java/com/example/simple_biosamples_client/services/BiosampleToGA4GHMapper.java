@@ -38,6 +38,7 @@ public class BiosampleToGA4GHMapper {
      * @return sample in GA4GH format
      */
     public Biosample mapSampleToGA4GH(Sample rawSample) {
+        ga4ghSample.clear();
         ga4ghSample.setId(rawSample.getAccession());
         ga4ghSample.setName(rawSample.getName());
         mapCharacteristics(rawSample);
@@ -61,7 +62,6 @@ public class BiosampleToGA4GHMapper {
             String type = attribute.getType();
             if (type.equals("age")) {
                 mapAge(attribute);
-                break;
             } else if (locationHelper.isGeoLocationData(type)) {
                 locationInfo.add(attribute);
             } else if (type.equals("individual")) {
@@ -134,7 +134,7 @@ public class BiosampleToGA4GHMapper {
         for (Relationship relationship : rawSample.getRelationships()) {
             ExternalIdentifier identifier = new ExternalIdentifier();
             identifier.setRelation(relationship.getType());
-            if (relationship.getSource().equals(rawSample.getAccession())) {
+            if (!relationship.getSource().equals(rawSample.getAccession())) {
                 identifier.setIdentifier(relationship.getSource());
             } else {
                 identifier.setIdentifier(relationship.getTarget());
@@ -155,7 +155,12 @@ public class BiosampleToGA4GHMapper {
         Age age = new Age();
         age.setAge(attribute.getValue());
         try {
-            age.setAge_class(getSingleOntologyTerm(attribute.getIri().first()));
+            SortedSet<String> iri = attribute.getIri();
+            if (iri == null || iri.size() == 0) {
+                age.setAge_class(null);
+            } else {
+                age.setAge_class(getSingleOntologyTerm(iri.first()));
+            }
         } catch (NullPointerException e) {
             age.setAge_class(null);
         }
@@ -252,6 +257,14 @@ public class BiosampleToGA4GHMapper {
         return terms;
     }
 
+    /**
+     * Converts Object list to ga4gh AttributeValue list
+     *
+     * @param values objects of any type
+     * @param <T>
+     * @return list of attributeValues (that contains values that supported by ga4gh)
+     * @see AttributeValue
+     */
     private <T> List<AttributeValue> convertObjectsToAttributeValues(SortedSet<T> values) {
         List<AttributeValue> attributes = new ArrayList<>();
         for (T value : values) {

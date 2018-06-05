@@ -1,8 +1,8 @@
 {
   "id": "SAMN07566236",
-  "name": "Human sample from Homo sapiens",
   "dataset_id": null,
-  "individual_id": "ID_652",
+  "individual_id": null,
+  "name": "Human sample from Homo sapiens",
   "description": null,
   "bio_characteristics": [
     {
@@ -40,27 +40,6 @@
     }
   ],
   "attributes": {
-    "released": {
-      "values": [
-        {
-          "string_value": "2017-08-27"
-        }
-      ]
-    },
-    "updated": {
-      "values": [
-        {
-          "string_value": "2018-01-22"
-        }
-      ]
-    },
-    "domain": {
-      "values": [
-        {
-          "string_value": "self.BioSamplesMigration"
-        }
-      ]
-    },
     "biomaterial provider": {
       "values": [
         {
@@ -75,10 +54,46 @@
         }
       ]
     },
+    "domain": {
+      "values": [
+        {
+          "string_value": "self.BioSamplesMigration"
+        }
+      ]
+    },
+    "external_references": {
+      "values": [
+        {
+          "attributes": {
+            "hash": {
+              "values": [
+                {
+                  "string_value": "739a9816a958c9abb429dfd5d93c00c742c1148f21cfa57d670eab59a01eecf6"
+                }
+              ]
+            },
+            "url": {
+              "values": [
+                {
+                  "string_value": "http://www.ebi.ac.uk/ena/data/view/SAMN07566236"
+                }
+              ]
+            }
+          }
+        }
+      ]
+    },
     "gestational weeks": {
       "values": [
         {
           "string_value": "18"
+        }
+      ]
+    },
+    "individual ID": {
+      "values": [
+        {
+          "string_value": "ID_652"
         }
       ]
     },
@@ -103,6 +118,13 @@
         }
       ]
     },
+    "released": {
+      "values": [
+        {
+          "string_value": "2017-08-27"
+        }
+      ]
+    },
     "synonym": {
       "values": [
         {
@@ -110,24 +132,12 @@
         }
       ]
     },
-    "externalReferences": {
+    "updated": {
       "values": [
         {
-          "url": {
-            "values": [
-              {
-                "string_values": "http://www.ebi.ac.uk/ena/data/view/SAMN07566236"
-              }
-            ]
-          }
+          "string_value": "2018-01-22"
         }
       ]
-    },
-    "organization": {
-      "values": []
-    },
-    "contact": {
-      "values": []
     }
   },
   "external_identifiers": [],
@@ -135,5 +145,5 @@
     "age": "40",
     "age_class": null
   },
-  "location": {}
+  "location": null
 }

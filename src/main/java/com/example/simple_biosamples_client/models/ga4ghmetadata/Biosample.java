@@ -201,7 +201,16 @@ public class Biosample {
 
     }
 
-
+    public void clear() {
+        this.setAttributes(new Attributes()); // need to be cleared before map next sample using the same mapper
+        this.setBio_characteristic(new TreeSet<Biocharacteristics>());
+        this.setExternal_identifiers(new TreeSet<>());
+        this.setDescription(null);
+        this.setDataset_id(null);
+        this.setIndividual_id(null);
+        this.setLocation(null);
+        this.setIndividual_age_at_collection(null);
+    }
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

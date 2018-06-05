@@ -1,8 +1,8 @@
 {
-  "id": "SAMEA2657604",
-  "name": "source GSM1281862 1",
+  "id": "SAMEA2672955",
   "dataset_id": null,
   "individual_id": null,
+  "name": "ERS513890",
   "description": null,
   "bio_characteristics": [
     {
@@ -17,33 +17,33 @@
       "scope": null
     },
     {
-      "description": "Sex",
+      "description": "environment (material)",
       "ontology_terms": [
         {
-          "term_id": "EFO:0001266",
-          "term_label": "male"
+          "term_id": "BTO:0001202",
+          "term_label": "saliva"
         }
       ],
       "negated_ontology_terms": [],
       "scope": null
     },
     {
-      "description": "organism part",
+      "description": "host body product",
       "ontology_terms": [
         {
-          "term_id": "UBERON:0002349",
-          "term_label": "cardiac muscle"
+          "term_id": "BTO:0001202",
+          "term_label": "saliva"
         }
       ],
       "negated_ontology_terms": [],
       "scope": null
     },
     {
-      "description": "race",
+      "description": "host sex",
       "ontology_terms": [
         {
-          "term_id": "EFO:0003152",
-          "term_label": "Asian"
+          "term_id": "PATO:0000383",
+          "term_label": "female"
         }
       ],
       "negated_ontology_terms": [],
@@ -51,17 +51,45 @@
     }
   ],
   "attributes": {
-    "released": {
+    "Couple Id": {
       "values": [
         {
-          "string_value": "2014-07-01"
+          "string_value": "Couple 1"
         }
       ]
     },
-    "updated": {
+    "Donor/Acceptor": {
       "values": [
         {
-          "string_value": "2018-04-04"
+          "string_value": "A"
+        }
+      ]
+    },
+    "Reported Kissing with partner Frequency": {
+      "values": [
+        {
+          "string_value": "1/day"
+        }
+      ]
+    },
+    "Sampling time point": {
+      "values": [
+        {
+          "string_value": "4"
+        }
+      ]
+    },
+    "Time since last intimate kissing with partner": {
+      "values": [
+        {
+          "string_value": "6hour"
+        }
+      ]
+    },
+    "colection date": {
+      "values": [
+        {
+          "string_value": "2012-07-01T12:00:00"
         }
       ]
     },
@@ -72,126 +100,120 @@
         }
       ]
     },
-    "Sample source name": {
+    "environment (biome)": {
       "values": [
         {
-          "string_value": "advanced heart failure-ICM-serum-at LVAD explantation for heart transplantation"
+          "string_value": "Human associated"
         }
       ]
     },
-    "Sample title": {
+    "environment (feature)": {
       "values": [
         {
-          "string_value": "CTL03_LVntr_1"
+          "string_value": "Mouth"
         }
       ]
     },
-    "lvad status": {
+    "external_references": {
       "values": [
         {
-          "string_value": "No LVAD"
-        }
-      ]
-    },
-    "sample id": {
-      "values": [
-        {
-          "string_value": "CTL03"
-        }
-      ]
-    },
-    "secondary description": {
-      "values": [
-        {
-          "string_value": "Sample name: ICM17_SRexp_1 Processed data circulation_clusters.txt Processed data circulation_seqfams.txt Processed data circulation_unique.txt Library: 7 barcode: TAGGA common 3'-adapter: TCGTATGCCGTCTTCTGCTTG complete 3'-adapter: TAGGATCGTATGCCGTCTTCTGCTTG"
-        }
-      ]
-    },
-    "externalReferences": {
-      "values": [
-        {
-          "url": {
-            "values": [
-              {
-                "string_values": "http://www.ebi.ac.uk/ena/data/view/SAMN02437723"
-              }
-            ]
+          "attributes": {
+            "hash": {
+              "values": [
+                {
+                  "string_value": "6bada319216627c7bea7edd304929dd934c7d4fcfc818b42fc5189ddc1c03d0b"
+                }
+              ]
+            },
+            "url": {
+              "values": [
+                {
+                  "string_value": "http://www.ebi.ac.uk/ena/data/view/ERS513890"
+                }
+              ]
+            }
           }
         },
         {
-          "url": {
-            "values": [
-              {
-                "string_values": "http://www.ebi.ac.uk/ena/data/view/SRS512248"
-              }
-            ]
+          "attributes": {
+            "hash": {
+              "values": [
+                {
+                  "string_value": "e81b8f5998dba9b84abec0dbc4f164b004d8b29c4b7e2d921d9970ae6329011a"
+                }
+              ]
+            },
+            "url": {
+              "values": [
+                {
+                  "string_value": "http://www.ebi.ac.uk/ena/data/view/SAMEA2672955"
+                }
+              ]
+            }
           }
         }
       ]
     },
-    "organization": {
+    "host-associated environmental package": {
       "values": [
         {
-          "Name": {
-            "values": [
-              {
-                "string_values": "The Rockefeller University"
-              }
-            ]
-          }
-        },
-        {
-          "Role": {
-            "values": [
-              {
-                "string_values": "submitter "
-              }
-            ]
-          }
+          "string_value": "host-associated"
         }
       ]
     },
-    "contact": {
+    "investigation type": {
       "values": [
         {
-          "Name": {
-            "values": [
-              {
-                "string_values": "Kemal Akat"
-              }
-            ]
-          }
-        },
+          "string_value": "mimarks-survey"
+        }
+      ]
+    },
+    "project name": {
+      "values": [
         {
-          "Name": {
-            "values": [
-              {
-                "string_values": "Paul Schulze"
-              }
-            ]
-          }
-        },
+          "string_value": "Shaping the oral microbiota by intimate kissing"
+        }
+      ]
+    },
+    "released": {
+      "values": [
         {
-          "Name": {
-            "values": [
-              {
-                "string_values": "Thomas Tuschl"
-              }
-            ]
-          }
+          "string_value": "2016-10-21"
+        }
+      ]
+    },
+    "sequencing method": {
+      "values": [
+        {
+          "string_value": "MiSeq Illumina"
+        }
+      ]
+    },
+    "synonym": {
+      "values": [
+        {
+          "string_value": "Oral-Microbiota22"
+        }
+      ]
+    },
+    "updated": {
+      "values": [
+        {
+          "string_value": "2018-01-20"
         }
       ]
     }
   },
-  "external_identifiers": [
-    {
-      "identifier": "SAMEG180498",
-      "relation": "has member"
-    }
-  ],
+  "external_identifiers": [],
   "individual_age_at_collection": {
     "age": "40",
     "age_class": null
   },
-  "location": {}
+  "location": {
+    "label": null,
+    "precision": null,
+    "latitude": 52.366091,
+    "longtitude": 0,
+    "altitude": 0
+  }
 }
