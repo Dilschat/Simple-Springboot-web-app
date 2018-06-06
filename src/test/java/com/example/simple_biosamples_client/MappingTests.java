@@ -97,7 +97,7 @@ public class MappingTests {
         JsonParser parser = new JsonParser();
         ObjectMapper jsonMapper = new ObjectMapper();
         String sampleJson = "SAMEA2672955";
-        String biosampleJson = readFile("/home/dilshat/Desktop/simple_biosamples_client/test_biosample_to_ga4gh/3/GA4GHSAMEA2657604.json", StandardCharsets.UTF_8);
+        String biosampleJson = readFile("/home/dilshat/Desktop/simple_biosamples_client/test_biosample_to_ga4gh/3/GA4GHSAMEA2672955.json", StandardCharsets.UTF_8);
         Sample sample = client.fetchSampleResource(sampleJson).get().getContent();
         Biosample biosample = mapper.mapSampleToGA4GH(sample);
         String mappedBiosampleJson = jsonMapper.writeValueAsString(biosample);
@@ -113,7 +113,7 @@ public class MappingTests {
     public void real_sample_deserialization_test3() throws IOException {
         ObjectMapper jsonMapper = new ObjectMapper();
         String sampleJson = "SAMEA2672955";
-        String biosampleJson = readFile("/home/dilshat/Desktop/simple_biosamples_client/test_biosample_to_ga4gh/3/GA4GHSAMEA2657604.json", StandardCharsets.UTF_8);
+        String biosampleJson = readFile("/home/dilshat/Desktop/simple_biosamples_client/test_biosample_to_ga4gh/3/GA4GHSAMEA2672955.json", StandardCharsets.UTF_8);
         Sample sample = client.fetchSampleResource(sampleJson).get().getContent();
         Biosample biosample = mapper.mapSampleToGA4GH(sample);
         Biosample deserialized_biosample = jsonMapper.readValue(biosampleJson, Biosample.class);
@@ -155,7 +155,7 @@ public class MappingTests {
         JsonParser parser = new JsonParser();
         ObjectMapper jsonMapper = new ObjectMapper();
         String sampleJson = "SAMEA281881";
-        String biosampleJson = readFile("/home/dilshat/Desktop/simple_biosamples_client/test_biosample_to_ga4gh/6/GA4GHdecimal_geolocation_SAMEA3121488.json", StandardCharsets.UTF_8);
+        String biosampleJson = readFile("/home/dilshat/Desktop/simple_biosamples_client/test_biosample_to_ga4gh/6/GA4GHSAMEA3121488.json", StandardCharsets.UTF_8);
         Sample sample = client.fetchSampleResource(sampleJson).get().getContent();
         Biosample biosample = mapper.mapSampleToGA4GH(sample);
         String mappedBiosampleJson = jsonMapper.writeValueAsString(biosample);
@@ -171,7 +171,7 @@ public class MappingTests {
     public void real_sample_deserialization_test5() throws IOException {
         ObjectMapper jsonMapper = new ObjectMapper();
         String sampleJson = "SAMEA281881";
-        String biosampleJson = readFile("/home/dilshat/Desktop/simple_biosamples_client/test_biosample_to_ga4gh/6/GA4GHdecimal_geolocation_SAMEA3121488.json", StandardCharsets.UTF_8);
+        String biosampleJson = readFile("/home/dilshat/Desktop/simple_biosamples_client/test_biosample_to_ga4gh/6/GA4GHSAMEA3121488.json", StandardCharsets.UTF_8);
         Sample sample = client.fetchSampleResource(sampleJson).get().getContent();
         Biosample biosample = mapper.mapSampleToGA4GH(sample);
         Biosample deserialized_biosample = jsonMapper.readValue(biosampleJson, Biosample.class);

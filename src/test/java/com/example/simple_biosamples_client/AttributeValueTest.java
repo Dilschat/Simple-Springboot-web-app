@@ -22,7 +22,7 @@ public class AttributeValueTest {
     public void int64_value_test() {
         Long value = 1L;
         AttributeValue val1 = new AttributeValue(value);
-        AttributeValue val2 = new AttributeValue(0L);
+        AttributeValue val2 = new AttributeValue(0);
         val2.setType("int64_value");
         val2.setValue(1);
         assertEquals(val1.getType(), val2.getType());
