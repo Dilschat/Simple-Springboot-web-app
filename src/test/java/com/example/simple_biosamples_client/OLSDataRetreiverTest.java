@@ -1,6 +1,6 @@
 package com.example.simple_biosamples_client;
 
-import com.example.simple_biosamples_client.services.utils.OLSDataRetriever;
+import com.example.simple_biosamples_client.ga4gh_services.OLSDataRetriever;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;

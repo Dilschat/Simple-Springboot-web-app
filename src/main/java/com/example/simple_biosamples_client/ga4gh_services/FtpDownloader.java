@@ -1,4 +1,4 @@
-package com.example.simple_biosamples_client.services;
+package com.example.simple_biosamples_client.ga4gh_services;
 
 import org.apache.commons.net.ftp.FTP;
 import org.apache.commons.net.ftp.FTPClient;

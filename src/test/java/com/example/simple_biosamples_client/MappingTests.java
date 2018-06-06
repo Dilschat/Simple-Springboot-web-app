@@ -1,7 +1,7 @@
 package com.example.simple_biosamples_client;
 
+import com.example.simple_biosamples_client.ga4gh_services.BiosampleToGA4GHMapper;
 import com.example.simple_biosamples_client.models.ga4ghmetadata.Biosample;
-import com.example.simple_biosamples_client.services.BiosampleToGA4GHMapper;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.gson.JsonParser;
 import org.json.JSONException;
@@ -16,12 +16,14 @@ import uk.ac.ebi.biosamples.client.BioSamplesClient;
 import uk.ac.ebi.biosamples.model.Sample;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 
+/**
+ * This test class uses for testing mapping and serialization and deserialization ga4gh objects
+ */
 @RunWith(SpringRunner.class)
 @SpringBootTest()
 public class MappingTests {
@@ -38,11 +40,7 @@ public class MappingTests {
         String biosampleJson = readFile("/home/dilshat/Desktop/simple_biosamples_client/test_biosample_to_ga4gh/1/GA4GHSAMEA1367515.json", StandardCharsets.UTF_8);
         Sample sample = client.fetchSampleResource(sampleJson).get().getContent();
         Biosample biosample = mapper.mapSampleToGA4GH(sample);
-        String mappedBiosampleJson = jsonMapper.writeValueAsString(biosample);//jsonMapper.writeValueAsString(biosample)
-        PrintWriter printWriter = new PrintWriter("file1.json");
-        printWriter.write(mappedBiosampleJson);
-        printWriter.flush();
-        printWriter.close();
+        String mappedBiosampleJson = jsonMapper.writeValueAsString(biosample);
         try {
             JSONAssert.assertEquals(biosampleJson, mappedBiosampleJson, false);
         } catch (JSONException e) {
@@ -73,11 +71,7 @@ public class MappingTests {
         String biosampleJson = readFile("/home/dilshat/Desktop/simple_biosamples_client/test_biosample_to_ga4gh/2/GA4GHSAMN07666496.json", StandardCharsets.UTF_8);
         Sample sample = client.fetchSampleResource(sampleJson).get().getContent();
         Biosample biosample = mapper.mapSampleToGA4GH(sample);
-        String mappedBiosampleJson = jsonMapper.writeValueAsString(biosample);//jsonMapper.writeValueAsString(biosample);
-        PrintWriter printWriter = new PrintWriter("file2.json");
-        printWriter.write(mappedBiosampleJson);
-        printWriter.flush();
-        printWriter.close();
+        String mappedBiosampleJson = jsonMapper.writeValueAsString(biosample);
         try {
             JSONAssert.assertEquals(biosampleJson, mappedBiosampleJson, false);
         } catch (JSONException e) {
@@ -106,11 +100,7 @@ public class MappingTests {
         String biosampleJson = readFile("/home/dilshat/Desktop/simple_biosamples_client/test_biosample_to_ga4gh/3/GA4GHSAMEA2657604.json", StandardCharsets.UTF_8);
         Sample sample = client.fetchSampleResource(sampleJson).get().getContent();
         Biosample biosample = mapper.mapSampleToGA4GH(sample);
-        String mappedBiosampleJson = jsonMapper.writeValueAsString(biosample);//jsonMapper.writeValueAsString(biosample);
-        PrintWriter printWriter = new PrintWriter("file3.json");
-        printWriter.write(mappedBiosampleJson);
-        printWriter.flush();
-        printWriter.close();
+        String mappedBiosampleJson = jsonMapper.writeValueAsString(biosample);
         try {
             JSONAssert.assertEquals(biosampleJson, mappedBiosampleJson, false);
         } catch (JSONException e) {
@@ -139,11 +129,7 @@ public class MappingTests {
         String biosampleJson = readFile("/home/dilshat/Desktop/simple_biosamples_client/test_biosample_to_ga4gh/4/GA4GHSAMN07566236.json", StandardCharsets.UTF_8);
         Sample sample = client.fetchSampleResource(sampleJson).get().getContent();
         Biosample biosample = mapper.mapSampleToGA4GH(sample);
-        String mappedBiosampleJson = jsonMapper.writeValueAsString(biosample);//jsonMapper.writeValueAsString(biosample);
-        PrintWriter printWriter = new PrintWriter("file4.json");
-        printWriter.write(mappedBiosampleJson);
-        printWriter.flush();
-        printWriter.close();
+        String mappedBiosampleJson = jsonMapper.writeValueAsString(biosample);
         try {
             JSONAssert.assertEquals(biosampleJson, mappedBiosampleJson, false);
         } catch (JSONException e) {
@@ -172,11 +158,7 @@ public class MappingTests {
         String biosampleJson = readFile("/home/dilshat/Desktop/simple_biosamples_client/test_biosample_to_ga4gh/6/GA4GHdecimal_geolocation_SAMEA3121488.json", StandardCharsets.UTF_8);
         Sample sample = client.fetchSampleResource(sampleJson).get().getContent();
         Biosample biosample = mapper.mapSampleToGA4GH(sample);
-        String mappedBiosampleJson = jsonMapper.writeValueAsString(biosample);//jsonMapper.writeValueAsString(biosample);
-        PrintWriter printWriter = new PrintWriter("file5.json");
-        printWriter.write(mappedBiosampleJson);
-        printWriter.flush();
-        printWriter.close();
+        String mappedBiosampleJson = jsonMapper.writeValueAsString(biosample);
         try {
             JSONAssert.assertEquals(biosampleJson, mappedBiosampleJson, false);
         } catch (JSONException e) {
@@ -205,11 +187,7 @@ public class MappingTests {
         String biosampleJson = readFile("/home/dilshat/Desktop/simple_biosamples_client/test_biosample_to_ga4gh/5/GA4GHSAMN03876393.json", StandardCharsets.UTF_8);
         Sample sample = client.fetchSampleResource(sampleJson).get().getContent();
         Biosample biosample = mapper.mapSampleToGA4GH(sample);
-        String mappedBiosampleJson = jsonMapper.writeValueAsString(biosample);//jsonMapper.writeValueAsString(biosample);
-        PrintWriter printWriter = new PrintWriter("file6.json");
-        printWriter.write(mappedBiosampleJson);
-        printWriter.flush();
-        printWriter.close();
+        String mappedBiosampleJson = jsonMapper.writeValueAsString(biosample);
         try {
             JSONAssert.assertEquals(biosampleJson, mappedBiosampleJson, false);
         } catch (JSONException e) {

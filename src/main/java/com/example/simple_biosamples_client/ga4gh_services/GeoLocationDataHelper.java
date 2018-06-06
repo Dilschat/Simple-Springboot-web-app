@@ -1,4 +1,4 @@
-package com.example.simple_biosamples_client.services.utils;
+package com.example.simple_biosamples_client.ga4gh_services;
 
 import org.springframework.stereotype.Component;
 

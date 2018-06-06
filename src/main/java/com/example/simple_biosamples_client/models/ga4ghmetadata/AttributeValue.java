@@ -1,6 +1,6 @@
 package com.example.simple_biosamples_client.models.ga4ghmetadata;
 
-import com.example.simple_biosamples_client.services.AttributeValueSerializer;
+import com.example.simple_biosamples_client.ga4gh_services.AttributeValueSerializer;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
@@ -8,7 +8,6 @@ import java.util.List;
 import java.util.Objects;
 
 @JsonSerialize(using = AttributeValueSerializer.class)
-//@JsonDeserialize()
 public class AttributeValue {
 
 

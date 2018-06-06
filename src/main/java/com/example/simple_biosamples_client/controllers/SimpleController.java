@@ -1,8 +1,8 @@
 package com.example.simple_biosamples_client.controllers;
 
-import com.example.simple_biosamples_client.DAOs.BiosamplesAccessPoint;
+import com.example.simple_biosamples_client.ga4gh_services.BiosampleToGA4GHMapper;
+import com.example.simple_biosamples_client.ga4gh_services.BiosamplesRetriever;
 import com.example.simple_biosamples_client.models.ga4ghmetadata.Biosample;
-import com.example.simple_biosamples_client.services.BiosampleToGA4GHMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.hateoas.Resource;
@@ -15,12 +15,12 @@ import java.util.List;
 @EnableAutoConfiguration
 public class SimpleController {
 
-    private BiosamplesAccessPoint accessPoint;
+    private BiosamplesRetriever accessPoint;
     private BiosampleToGA4GHMapper toGA4GHMapper;
     @Autowired
-    SimpleController(BiosamplesAccessPoint biosamplesAccessPoint, BiosampleToGA4GHMapper mapper) {
+    SimpleController(BiosamplesRetriever biosamplesRepository, BiosampleToGA4GHMapper mapper) {
         this.toGA4GHMapper = mapper;
-        this.accessPoint = biosamplesAccessPoint;
+        this.accessPoint = biosamplesRepository;
     }
 
     @RequestMapping(value = "/getSampleById/{sampleID}", method = RequestMethod.GET)

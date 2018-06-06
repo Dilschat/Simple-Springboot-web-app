@@ -1,8 +1,6 @@
-package com.example.simple_biosamples_client.DAOs;
+package com.example.simple_biosamples_client.ga4gh_services;
 
-import com.example.simple_biosamples_client.models.SearchingForm;
-import com.example.simple_biosamples_client.services.FilterCreator;
-import com.google.common.collect.Lists;
+import com.example.simple_biosamples_client.models.ga4ghmetadata.Biosample;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.hateoas.Resource;
@@ -14,15 +12,18 @@ import uk.ac.ebi.biosamples.service.FilterBuilder;
 
 import java.util.*;
 
+
 @Component
 @Scope("prototype")
-public class BiosamplesAccessPoint {
+public class BiosamplesRetriever {
 
     private BioSamplesClient client;
     private FilterCreator filterCreator;
+    @Autowired
+    protected BiosampleToGA4GHMapper mapper;
 
     @Autowired
-    BiosamplesAccessPoint(BioSamplesClient bioSamplesClient, FilterCreator filterCreator) {
+    BiosamplesRetriever(BioSamplesClient bioSamplesClient, FilterCreator filterCreator) {
         this.client = bioSamplesClient;
         this.filterCreator = filterCreator;
     }
@@ -45,12 +46,18 @@ public class BiosamplesAccessPoint {
         return client.fetchSampleResourceAll(text, filters);
     }
 
-    public Iterable<Resource<Sample>> getFilteredSamplesBySearchForm(SearchingForm form) {
+    public List<Biosample> getFilteredSamplesBySearchForm(SearchingForm form) {
         Collection<Collection<Filter>> filters = filterCreator.createFilters(form);
-        ArrayList<Resource<Sample>> results = new ArrayList<>();
+        List<Biosample> results = new ArrayList<>();
         for (Collection<Filter> filter : filters) {
-            Iterable<Resource<Sample>> result = client.fetchSampleResourceAll(form.getText(), filter);
-            results.addAll(Lists.newArrayList(result));
+            Iterable<Resource<Sample>> samples = client.fetchSampleResourceAll(form.getText(), filter);
+            for (Resource<Sample> resource : samples) {
+                Sample sample = resource.getContent();
+                Biosample biosample = mapper.mapSampleToGA4GH(sample);
+                results.add(biosample);
+            }
+
+
         }
 
         return results;

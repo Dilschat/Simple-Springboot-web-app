@@ -1,4 +1,4 @@
-package com.example.simple_biosamples_client.services;
+package com.example.simple_biosamples_client.ga4gh_services;
 
 import com.example.simple_biosamples_client.models.ga4ghmetadata.AttributeValue;
 import com.example.simple_biosamples_client.models.ga4ghmetadata.Attributes;
@@ -12,6 +12,7 @@ import java.io.IOException;
 import java.util.List;
 import java.util.SortedMap;
 
+//TODO javadoc
 public class AttributeSerializer extends StdSerializer<Attributes> {
     public AttributeSerializer() {
         super(Attributes.class);
@@ -19,14 +20,6 @@ public class AttributeSerializer extends StdSerializer<Attributes> {
 
     public AttributeSerializer(JavaType type) {
         super(type);
-    }
-
-    public AttributeSerializer(Class<?> t, boolean dummy) {
-        super(t, dummy);
-    }
-
-    public AttributeSerializer(StdSerializer<?> src) {
-        super(src);
     }
 
     @Override

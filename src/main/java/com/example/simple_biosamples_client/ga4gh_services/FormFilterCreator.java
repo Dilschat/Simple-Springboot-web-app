@@ -1,6 +1,5 @@
-package com.example.simple_biosamples_client.services;
+package com.example.simple_biosamples_client.ga4gh_services;
 
-import com.example.simple_biosamples_client.models.SearchingForm;
 import org.springframework.stereotype.Service;
 import uk.ac.ebi.biosamples.model.filter.Filter;
 import uk.ac.ebi.biosamples.service.FilterBuilder;

@@ -1,4 +1,4 @@
-package com.example.simple_biosamples_client.services;
+package com.example.simple_biosamples_client.ga4gh_services;
 
 import com.example.simple_biosamples_client.models.ga4ghmetadata.*;
 import com.fasterxml.jackson.core.JsonParser;
@@ -12,6 +12,7 @@ import com.fasterxml.jackson.databind.deser.std.StdDeserializer;
 import java.io.IOException;
 import java.util.*;
 
+//TODO javadoc
 public class AttributeDeserializer extends StdDeserializer<Attributes> {
 
     public AttributeDeserializer() {

@@ -1,10 +1,6 @@
-package com.example.simple_biosamples_client.services;
+package com.example.simple_biosamples_client.ga4gh_services;
 
 import com.example.simple_biosamples_client.models.ga4ghmetadata.*;
-import com.example.simple_biosamples_client.services.utils.GeoLocationDataHelper;
-import com.example.simple_biosamples_client.services.utils.Location;
-import com.example.simple_biosamples_client.services.utils.OLSDataRetriever;
-import com.example.simple_biosamples_client.services.utils.ObjectUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import uk.ac.ebi.biosamples.model.Attribute;
@@ -174,12 +170,13 @@ public class BiosampleToGA4GHMapper {
      * @see Attributes
      */
     private void mapAttributes(List<Attribute> characteristics) {
-        for (Attribute attribute : characteristics) {
+        characteristics.parallelStream().peek(attribute -> {
             ArrayList<AttributeValue> values = new ArrayList<>();
             AttributeValue value = new AttributeValue(attribute.getValue());
             values.add(value);
             ga4ghSample.addAttributeList(attribute.getType(), values);
-        }
+        });
+
     }
 
     /**
@@ -190,13 +187,14 @@ public class BiosampleToGA4GHMapper {
      */
     private void mapBioCharacteristics(List<Attribute> characteristics) {
         SortedSet<Biocharacteristics> biocharacteristics = new TreeSet<>();
-        for (Attribute attribute : characteristics) {
+
+        characteristics.parallelStream().peek(attribute -> {
             Biocharacteristics biocharacteristic = new Biocharacteristics();
             biocharacteristic.setDescription(attribute.getType());
             biocharacteristic.setScope(attribute.getUnit());
             biocharacteristic.setOntology_terms(getOntologyTerms(attribute.getIri()));
             biocharacteristics.add(biocharacteristic);
-        }
+        });
         ga4ghSample.setBio_characteristic(biocharacteristics);
 
     }
@@ -267,15 +265,13 @@ public class BiosampleToGA4GHMapper {
      */
     private <T> List<AttributeValue> convertObjectsToAttributeValues(SortedSet<T> values) {
         List<AttributeValue> attributes = new ArrayList<>();
-        for (T value : values) {
-            Attributes attribute = new Attributes();
-            List<AttributeValue> attributesOfObject = new ArrayList<>();
-            Map<String, Object> objectFieldsAndValues;
+        values.parallelStream().peek(value -> {
+            Map<String, Object> objectFieldsAndValues = null;
             try {
                 objectFieldsAndValues = ObjectUtils.getFieldNamesAndValues(value, false);
             } catch (IllegalAccessException e) {
                 e.printStackTrace();
-                break;
+
             }
             Attributes attributesFromField = new Attributes();
             Set<String> namesOfFields = objectFieldsAndValues.keySet();
@@ -287,7 +283,7 @@ public class BiosampleToGA4GHMapper {
                 }
             }
             attributes.add(new AttributeValue(attributesFromField));
-        }
+        });
 
         return attributes;
 
