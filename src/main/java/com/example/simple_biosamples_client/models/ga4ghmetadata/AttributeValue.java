@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.Objects;
 
 @JsonSerialize(using = AttributeValueSerializer.class)
-public class AttributeValue {
+public class AttributeValue implements Comparable {
 
 
     private String type;
@@ -91,9 +91,19 @@ public class AttributeValue {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         AttributeValue that = (AttributeValue) o;
-        return Objects.equals(type, that.type) &&
-                Objects.equals(value, that.value);
+        return Objects.equals(value, that.value);
     }
 
+    @Override
+    public String toString() {
+        return "AttributeValue{" +
+                "type='" + type + '\'' +
+                ", value=" + value +
+                '}';
+    }
 
+    @Override
+    public int compareTo(Object o) {
+        return this.compareTo(o);
+    }
 }

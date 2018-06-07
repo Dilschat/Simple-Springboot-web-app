@@ -216,13 +216,15 @@ public class Biosample {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Biosample biosample = (Biosample) o;
+        boolean charac = Objects.equals(bio_characteristic, biosample.bio_characteristic);
+        boolean a = Objects.equals(attributes, biosample.attributes);
         return Objects.equals(id, biosample.id) &&
                 Objects.equals(dataset_id, biosample.dataset_id) &&
                 Objects.equals(individual_id, biosample.individual_id) &&
                 Objects.equals(name, biosample.name) &&
                 Objects.equals(description, biosample.description) &&
-                Objects.equals(bio_characteristic, biosample.bio_characteristic) &&
-                Objects.equals(attributes, biosample.attributes) &&
+                charac &&
+                a &&
                 Objects.equals(external_identifiers, biosample.external_identifiers) &&
                 Objects.equals(individual_age_at_collection, biosample.individual_age_at_collection) &&
                 Objects.equals(location, biosample.location);

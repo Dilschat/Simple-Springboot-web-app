@@ -170,8 +170,8 @@ public class BiosampleToGA4GHMapper {
      * @see Attributes
      */
     private void mapAttributes(List<Attribute> characteristics) {
-        characteristics.parallelStream().peek(attribute -> {
-            ArrayList<AttributeValue> values = new ArrayList<>();
+        characteristics.stream().forEach(attribute -> {
+            List<AttributeValue> values = new ArrayList<>();
             AttributeValue value = new AttributeValue(attribute.getValue());
             values.add(value);
             ga4ghSample.addAttributeList(attribute.getType(), values);
@@ -188,7 +188,7 @@ public class BiosampleToGA4GHMapper {
     private void mapBioCharacteristics(List<Attribute> characteristics) {
         SortedSet<Biocharacteristics> biocharacteristics = new TreeSet<>();
 
-        characteristics.parallelStream().peek(attribute -> {
+        characteristics.parallelStream().forEach(attribute -> {
             Biocharacteristics biocharacteristic = new Biocharacteristics();
             biocharacteristic.setDescription(attribute.getType());
             biocharacteristic.setScope(attribute.getUnit());
@@ -265,16 +265,16 @@ public class BiosampleToGA4GHMapper {
      */
     private <T> List<AttributeValue> convertObjectsToAttributeValues(SortedSet<T> values) {
         List<AttributeValue> attributes = new ArrayList<>();
-        values.parallelStream().peek(value -> {
-            Map<String, Object> objectFieldsAndValues = null;
+        values.stream().forEach(value -> {
+            SortedMap<String, Object> objectFieldsAndValues = null;
             try {
-                objectFieldsAndValues = ObjectUtils.getFieldNamesAndValues(value, false);
+                objectFieldsAndValues = new TreeMap<>(ObjectUtils.getFieldNamesAndValues(value, false));
             } catch (IllegalAccessException e) {
                 e.printStackTrace();
 
             }
             Attributes attributesFromField = new Attributes();
-            Set<String> namesOfFields = objectFieldsAndValues.keySet();
+            SortedSet<String> namesOfFields = new TreeSet<>(objectFieldsAndValues.keySet());
             for (String key : namesOfFields) {
 
                 String object = (String) objectFieldsAndValues.get(key);

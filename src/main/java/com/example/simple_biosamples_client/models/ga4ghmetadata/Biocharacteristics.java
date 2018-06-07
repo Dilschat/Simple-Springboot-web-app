@@ -57,10 +57,6 @@ public class Biocharacteristics implements Comparable {
     }
 
 
-    @Override
-    public int compareTo(Object o) {
-        return this.getDescription().compareTo(((Biocharacteristics) o).getDescription());
-    }
 
     @Override
     public boolean equals(Object o) {
@@ -72,6 +68,13 @@ public class Biocharacteristics implements Comparable {
                 Objects.equals(negated_ontology_terms, that.negated_ontology_terms) &&
                 Objects.equals(scope, that.scope);
     }
+
+    @Override
+    public int compareTo(Object o) {
+        return this.getDescription().compareTo(((Biocharacteristics) o).getDescription());
+    }
+
+
 
     @Override
     public int hashCode() {
